@@ -14,6 +14,8 @@ public class VenueHireSystem {
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
     Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
+
+    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
   public void setSystemDate(String dateInput) {
