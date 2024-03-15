@@ -13,9 +13,18 @@ public class VenueHireSystem {
   }
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
+
+    // Checks for invalid venue name
+    if (venueName.replaceAll("\\s", "") == "") {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+    }
+    else { // Creates a venue when there are no errors in the inputs
+    // Creates new Venue
     Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
 
+    // Message about the creation of a new venue
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+    }
   }
 
   public void setSystemDate(String dateInput) {
