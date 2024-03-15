@@ -2,13 +2,16 @@ package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
+import com.github.houbb.data.struct.core.util.list.ArrayList;
+
 
 public class VenueHireSystem {
 
   public VenueHireSystem() {}
 
   public void printVenues() {
-    
+  
+  
     
   }
 
@@ -51,6 +54,9 @@ public class VenueHireSystem {
 
     // Message about the creation of a new venue
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+
+    // Adds the new venue to a list (VenueList)
+    venue.addVenueToList();
   }
 
   public void setSystemDate(String dateInput) {
