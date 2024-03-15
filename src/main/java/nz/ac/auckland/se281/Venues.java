@@ -17,4 +17,24 @@ public class Venues {
     this.HIRE_FEE = hireFee;
     
   }
+
+  // Getting venue name
+  public String getVenueName() {
+    return this.VENUE_NAME;
+  }
+
+  // Getting venue code
+  public String getVenueCode() {
+    return this.VENUE_CODE;
+  }
+
+  // Getting venue capacity
+  public String getVenueCapacity() {
+    return this.VENUE_CAPACITY;
+  }
+
+  // Getting venue hire fee
+  public String hireFee() {
+    return this.HIRE_FEE;
+  }
 }
