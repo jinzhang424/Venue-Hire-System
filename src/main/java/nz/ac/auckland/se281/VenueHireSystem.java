@@ -17,17 +17,29 @@ public class VenueHireSystem {
     // Checks for invalid venue name
     if (venueName.replaceAll("\\s", "") == "") {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+      return;
     }
+
     else if (Integer.parseInt(venueCapacity) < 1) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+      return;
     }
-    else { // Creates a venue when all inputs are valid
+    
+    try {
+      int hireFeeValue = Integer.parseInt(hireFee);
+      System.out.println(hireFeeValue);
+    }
+    catch(Exception e) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+      return;
+    }
+    
+    // Creates a venue when all inputs are valid
     // Creates new Venue
     Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
 
     // Message about the creation of a new venue
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-    }
   }
 
   public void setSystemDate(String dateInput) {
