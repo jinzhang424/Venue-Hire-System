@@ -20,24 +20,26 @@ public class VenueHireSystem {
       return;
     }
 
+    // Checks for invalid venue capacity value
     else if (Integer.parseInt(venueCapacity) < 1) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
       return;
     }
     
+
+    // Checks for invalid hiring fee
     try {
       int hireFeeValue = Integer.parseInt(hireFee);
       if (hireFeeValue < 1) {
-        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive"); 
       }
     }
     catch(Exception e) {
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", ""); 
       return;
     }
     
     // Creates a venue when all inputs are valid
-    // Creates new Venue
     Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
 
     // Message about the creation of a new venue

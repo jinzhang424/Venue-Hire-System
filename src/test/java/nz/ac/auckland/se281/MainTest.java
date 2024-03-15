@@ -58,6 +58,14 @@ public class MainTest {
     }
 
     @Test
+    public void T1_004_invalid_capacity_negative() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "fifty", "150");
+
+      assertContains("Venue not created: capacity must be a number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+
+    @Test
     public void T1_05_invalid_base_hire_fee_not_number() throws Exception {
       runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "fifty");
 

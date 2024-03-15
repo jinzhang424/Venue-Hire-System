@@ -12,6 +12,7 @@ public class Venues {
     this.VENUE_CODE = venueCode;
     this.VENUE_CAPACITY = venueCapacity;
     this.HIRE_FEE = hireFee;
+    
   }
   
 }
