@@ -20,9 +20,15 @@ public class VenueHireSystem {
       return;
     }
 
-    // Checks for invalid venue capacity value
-    else if (Integer.parseInt(venueCapacity) < 1) {
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+    try {
+      int venueCapacityValue = Integer.parseInt(venueCapacity);
+      if (venueCapacityValue < 1) {
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive"); 
+        return;
+      }
+    }
+    catch(Exception a) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", ""); 
       return;
     }
     
