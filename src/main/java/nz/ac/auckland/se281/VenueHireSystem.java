@@ -18,7 +18,10 @@ public class VenueHireSystem {
     if (venueName.replaceAll("\\s", "") == "") {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
     }
-    else { // Creates a venue when there are no errors in the inputs
+    else if (Integer.parseInt(venueCapacity) < 1) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+    }
+    else { // Creates a venue when all inputs are valid
     // Creates new Venue
     Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
 
