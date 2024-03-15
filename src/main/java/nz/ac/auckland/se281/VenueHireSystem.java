@@ -12,9 +12,8 @@ public class VenueHireSystem {
     System.out.println("There are no venues in the system. Please create a venue first.");
   }
 
-  public void createVenue(
-      String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    // TODO implement this method
+  public void createVenue(String venueName, int venueCode, int venueCapacity, int hireFee) {
+    Venues venue = new Venues(venueName, venueCode, venueCapacity, hireFee);
   }
 
   public void setSystemDate(String dateInput) {
