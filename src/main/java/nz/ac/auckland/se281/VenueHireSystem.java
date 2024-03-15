@@ -7,12 +7,15 @@ import com.github.houbb.data.struct.core.util.list.ArrayList;
 
 public class VenueHireSystem {
 
+  //Creating a list for storing venues
+  public ArrayList<Venues> VenueList = new ArrayList<Venues>();
+
   public VenueHireSystem() {}
 
   public void printVenues() {
-  
-  
-    
+    if (VenueList.size() == 0) {
+      MessageCli.NO_VENUES.printMessage();
+    }
   }
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
@@ -56,7 +59,7 @@ public class VenueHireSystem {
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
 
     // Adds the new venue to a list (VenueList)
-    venue.addVenueToList();
+    VenueList.add(venue);
   }
 
   public void setSystemDate(String dateInput) {
