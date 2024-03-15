@@ -27,7 +27,9 @@ public class VenueHireSystem {
     
     try {
       int hireFeeValue = Integer.parseInt(hireFee);
-      System.out.println(hireFeeValue);
+      if (hireFeeValue < 1) {
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
+      }
     }
     catch(Exception e) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
