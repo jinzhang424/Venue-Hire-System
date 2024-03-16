@@ -13,15 +13,15 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   public void printVenues() {
-    if (VenueList.size() == 0) {
+    if (VenueList.size() == 0) { //Prints message for when no venues have been created
       MessageCli.NO_VENUES.printMessage();
     }
-    else if (VenueList.size() == 1) {
+    else if (VenueList.size() == 1) { //Prints message for when there is 1 venue
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
       MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName(), VenueList.get(0).getVenueCode(), 
       VenueList.get(0).getVenueCapacity(), VenueList.get(0).hireFee());
     }
-    else {
+    else { //Prints message for when there is more than 1 venue
       MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
       for (int i = 0; i < VenueList.size(); i++) {
         MessageCli.VENUE_ENTRY.printMessage(VenueList.get(i).getVenueName(), VenueList.get(i).getVenueCode(), 
@@ -30,6 +30,7 @@ public class VenueHireSystem {
     }
   }
 
+
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
 
     // Checks for invalid venue name
@@ -37,8 +38,18 @@ public class VenueHireSystem {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
       return;
     }
+    else if (VenueList.size() > 0) { // Checks if the venue code entered is unique
+      for (int i = 0; i < VenueList.size(); i++) {
+        if (VenueList.get(i).getVenueCode().equalsIgnoreCase(venueCode)) {
+          MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, VenueList.get(i).getVenueName());
+          return;
+        }
+      }
+    }
+    
 
-    try {
+    //Checks for invalid venue capacity
+    try { 
       int venueCapacityValue = Integer.parseInt(venueCapacity);
       if (venueCapacityValue < 1) {
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive"); 
