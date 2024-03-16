@@ -16,6 +16,11 @@ public class VenueHireSystem {
     if (VenueList.size() == 0) {
       MessageCli.NO_VENUES.printMessage();
     }
+    else if (VenueList.size() == 1) {
+      MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+      MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName(), VenueList.get(0).getVenueCode(), 
+      VenueList.get(0).getVenueCapacity(), VenueList.get(0).hireFee());
+    }
   }
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
