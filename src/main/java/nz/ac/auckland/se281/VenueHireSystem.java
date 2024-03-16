@@ -21,6 +21,13 @@ public class VenueHireSystem {
       MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName(), VenueList.get(0).getVenueCode(), 
       VenueList.get(0).getVenueCapacity(), VenueList.get(0).hireFee());
     }
+    else {
+      MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
+      for (int i = 0; i < VenueList.size(); i++) {
+        MessageCli.VENUE_ENTRY.printMessage(VenueList.get(i).getVenueName(), VenueList.get(i).getVenueCode(), 
+      VenueList.get(i).getVenueCapacity(), VenueList.get(i).hireFee());
+      }
+    }
   }
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
