@@ -8,7 +8,8 @@ public class Venues {
   private String VENUE_CAPACITY = null;
   private String HIRE_FEE = null;
 
-  
+  private ArrayList<Venues> VenueList = new ArrayList<Venues>();
+
   public Venues(String venueName, String venueCode, String venueCapacity, String hireFee) {
 
     this.VENUE_NAME = venueName;
@@ -36,5 +37,10 @@ public class Venues {
   // Getting venue hire fee
   public String hireFee() {
     return this.HIRE_FEE;
+  }
+
+  // Getting venue list
+  public ArrayList<Venues> getVenueList() {
+    return VenueList;
   }
 }
