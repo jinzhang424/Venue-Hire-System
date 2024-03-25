@@ -10,7 +10,7 @@ public class VenueHireSystem {
   //Creating a list for storing venues
   private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
-  private String systemDate = null;
+  protected String systemDate = null;
 
   public VenueHireSystem() {}
 
@@ -111,7 +111,7 @@ public class VenueHireSystem {
 
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
+    
   }
 
 
