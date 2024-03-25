@@ -92,27 +92,29 @@ public class VenueHireSystem {
 
 
   public void setSystemDate(String dateInput) {
+    systemDate = dateInput;
     
+    MessageCli.DATE_SET.printMessage(systemDate); // Prints message saying system date has been set
   }
 
 
 
   public void printSystemDate() {
-    if (systemDate == null) {
+    if (systemDate == null) { // Checks if there is a system date
       System.out.println("Current system date is not set.");
     }
-    else {
+    else { // Prints system date
       MessageCli.CURRENT_DATE.printMessage(systemDate);
     }
   }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
   public void makeBooking(String[] options) {
     // TODO implement this method
   }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
   public void printBookings(String venueCode) {
     // TODO implement this method
