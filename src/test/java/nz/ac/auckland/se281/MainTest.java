@@ -15,8 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
   MainTest.Task1.class,
   MainTest.Task2.class,
-  // MainTest.Task3.class,
-  // MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.Task3.class,
+  MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
 
@@ -58,40 +58,8 @@ public class MainTest {
     }
 
     @Test
-    public void T1_004_invalid_capacity_not_number() throws Exception {
-      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "fifty", "150");
-
-      assertContains("Venue not created: capacity must be a number.");
-      assertDoesNotContain("Successfully created venue", true);
-    }
-
-    @Test
-    public void T1_0004_invalid_capacity_not_number() throws Exception {
-      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "0.5", "150");
-
-      assertContains("Venue not created: capacity must be a number.");
-      assertDoesNotContain("Successfully created venue", true);
-    }
-
-    @Test
     public void T1_05_invalid_base_hire_fee_not_number() throws Exception {
       runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "fifty");
-
-      assertContains("Venue not created: hire fee must be a number.");
-      assertDoesNotContain("Successfully created venue", true);
-    }
-
-    @Test
-    public void T1_005_invalid_base_hire_fee_negative() throws Exception {
-      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "-1");
-
-      assertContains("Venue not created: hire fee must be a positive number.");
-      assertDoesNotContain("Successfully created venue", true);
-    }
-
-    @Test
-    public void T1_0005_invalid_base_hire_fee_negative() throws Exception {
-      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "0.5");
 
       assertContains("Venue not created: hire fee must be a number.");
       assertDoesNotContain("Successfully created venue", true);
@@ -744,6 +712,36 @@ public class MainTest {
     public void T4_01_add_your_own_tests_as_needed() throws Exception {
       runCommands(PRINT_VENUES);
       assertContains("There are no venues in the system. Please create a venue first.");
+    }
+
+    @Test
+    public void T1_04_v2_invalid_capacity_not_number() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "fifty", "150");
+
+      assertContains("Venue not created: capacity must be a number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+
+    @Test
+    public void T1_04_v3_invalid_capacity_not_number() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "0.5", "150");
+
+      assertContains("Venue not created: capacity must be a number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+    public void T1_05_v2_invalid_base_hire_fee_negative() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "-1");
+
+      assertContains("Venue not created: hire fee must be a positive number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+
+    @Test
+    public void T1_05_v3_invalid_base_hire_fee_negative() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "0.5");
+
+      assertContains("Venue not created: hire fee must be a number.");
+      assertDoesNotContain("Successfully created venue", true);
     }
   }
 
