@@ -10,7 +10,11 @@ public class VenueHireSystem {
   //Creating a list for storing venues
   private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
+  private String systemDate = null;
+
   public VenueHireSystem() {}
+
+
 
   public void printVenues() {
     if (VenueList.size() == 0) { //Prints message for when no venues have been created
@@ -29,6 +33,7 @@ public class VenueHireSystem {
       }
     }
   }
+
 
 
   public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
@@ -61,7 +66,6 @@ public class VenueHireSystem {
       return;
     }
     
-
     // Checks for invalid hiring fee
     try {
       int hireFeeValue = Integer.parseInt(hireFee);
@@ -85,17 +89,30 @@ public class VenueHireSystem {
     VenueList.add(venue);
   }
 
+
+
   public void setSystemDate(String dateInput) {
-    // TODO implement this method
+    
   }
 
+
+
   public void printSystemDate() {
-    // TODO implement this method
+    if (systemDate == null) {
+      System.out.println("Current system date is not set.");
+    }
+    else {
+      MessageCli.CURRENT_DATE.printMessage(systemDate);
+    }
   }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public void makeBooking(String[] options) {
     // TODO implement this method
   }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public void printBookings(String venueCode) {
     // TODO implement this method
