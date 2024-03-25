@@ -10,11 +10,16 @@ public class VenueHireSystem {
   //Creating a list for storing venues
   private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
+  //Creating a list for storing 
+  private ArrayList<Bookings> BookingList = new ArrayList<Bookings>();
+
   private String systemDate = null;
 
   public VenueHireSystem() {}
 
-
+  public String getSystemDate() {
+    return systemDate;
+  }
 
   public void printVenues() {
     if (VenueList.size() == 0) { //Prints message for when no venues have been created
@@ -107,7 +112,6 @@ public class VenueHireSystem {
       MessageCli.CURRENT_DATE.printMessage(systemDate);
     }
   }
-
 
 
   public void makeBooking(String[] options) {
