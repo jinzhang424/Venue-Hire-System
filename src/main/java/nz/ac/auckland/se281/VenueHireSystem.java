@@ -8,9 +8,9 @@ import com.github.houbb.data.struct.core.util.list.ArrayList;
 public class VenueHireSystem {
 
   //Creating a list for storing venues
-  protected ArrayList<Venues> VenueList = new ArrayList<Venues>();
+  private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
-  protected String systemDate = null;
+  private String systemDate = null;
 
   public VenueHireSystem() {}
 
