@@ -163,7 +163,24 @@ public class VenueHireSystem {
     return false;
   }
 
+  public String bookingAttendeesChecker(String bookingAttendees, String venueCode) {
+    int numOfAttendees = Integer.parseInt(bookingAttendees);
+    int capacityOfVenue = Integer.parseInt(VenueList.get(venueFinder(venueCode)).getVenueCapacity()); 
+
+    if (numOfAttendees < capacityOfVenue/4) { // Checks if the number of attendees is 25% of venue capacity
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(bookingAttendees, Integer.toString(capacityOfVenue/4), VenueList.get(venueFinder(venueCode)).getVenueCapacity());
+      return Integer.toString(capacityOfVenue/4);
+    }
+    else if (numOfAttendees > capacityOfVenue) { // Checks if the number of attendees exceeds venue capacity
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(bookingAttendees, VenueList.get(venueFinder(venueCode)).getVenueCapacity(), VenueList.get(venueFinder(venueCode)).getVenueCapacity());
+      return Integer.toString(capacityOfVenue);
+    }
+    return bookingAttendees;
+  }
+
   public void makeBooking(String[] options) {
+    options[3] = bookingAttendeesChecker(options[3], options[0]); // Converts the attendees value to the valid damount
+
     if (bookingInfoChecker(options) == true) { //Checking that inputs are valid and if the system is prepared to make bookings
       Bookings newBooking = new Bookings(options);
       BookingList.add(newBooking);
