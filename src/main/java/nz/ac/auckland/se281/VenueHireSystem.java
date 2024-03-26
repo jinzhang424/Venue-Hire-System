@@ -179,9 +179,9 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    options[3] = bookingAttendeesChecker(options[3], options[0]); // Converts the attendees value to the valid damount
 
     if (bookingInfoChecker(options) == true) { //Checking that inputs are valid and if the system is prepared to make bookings
+      options[3] = bookingAttendeesChecker(options[3], options[0]); // Converts the attendees value to the valid damount
       Bookings newBooking = new Bookings(options);
       BookingList.add(newBooking);
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), VenueList.get(venueFinder(options[0])).getVenueName(), options[1], options[3]);

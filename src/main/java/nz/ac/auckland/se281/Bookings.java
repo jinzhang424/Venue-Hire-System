@@ -1,7 +1,5 @@
 package nz.ac.auckland.se281;
 
-import java.util.List;
-
 public class Bookings {
   
   private String bookingVenueCode = null;
