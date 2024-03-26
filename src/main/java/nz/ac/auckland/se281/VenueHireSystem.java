@@ -113,6 +113,36 @@ public class VenueHireSystem {
     }
   }
 
+  public boolean bookingInfoChecker(String[] bookingInfo) {
+    
+    String[] dateParts = bookingInfo[1].split("/");
+    String[] systemDateParts = systemDate.split("/");
+
+    for (int j = 0; j < 3; j++) { // Checks if the system date is in the past
+      if (Integer.parseInt(systemDateParts[j]) > Integer.parseInt(dateParts[j])) {
+        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(bookingInfo[1], systemDate);
+        return false;
+      }
+    }
+
+    if (systemDate == null) { // Checks if system date has been set
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return false;
+    }
+    else if (VenueList.size() == 0) { // Checks if there's venues in the system
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return false;
+    }
+
+    for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
+      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
+        return true;
+      }
+    }
+
+    MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
+    return false;
+  }
 
   public void makeBooking(String[] options) {
     
