@@ -124,6 +124,15 @@ public class VenueHireSystem {
     }
   }
 
+  public String venueNameCodeMatcher(String venueCode) { // Finds the venue name that corresponds to the input venue code in a list
+    for (int i = 0; i < VenueList.size(); i++) { 
+      if (VenueList.get(i).getVenueCode().equals(venueCode)) {
+        return VenueList.get(i).getVenueName();
+      }
+    }
+    return "";
+  }
+
   public boolean bookingInfoChecker(String[] bookingInfo) {
   
     if (systemDate == null) { // Checks if system date has been set
@@ -168,6 +177,7 @@ public class VenueHireSystem {
     if (bookingInfoChecker(options) == true) {
       Bookings newBooking = new Bookings(options);
       BookingList.add(newBooking);
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), venueCodeNameMatcher(options[0], options), options[3]);
     }
   }
 
