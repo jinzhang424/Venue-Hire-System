@@ -11,7 +11,7 @@ public class VenueHireSystem {
   private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
   //Creating a list for storing 
-  private ArrayList<Bookings> bookingList = new ArrayList<Bookings>();
+  private ArrayList<Bookings> BookingList = new ArrayList<Bookings>();
 
   private String systemDate = null;
 
@@ -134,6 +134,14 @@ public class VenueHireSystem {
       }
     }
 
+    if (BookingList.size() > 0) { // Checks if the day we're trying to book is available or not
+      for (int k = 0; k < BookingList.size(); k++) {
+        if (bookingInfo[1].equals(BookingList.get(k).getBookingVenueDate())) {
+          return false;
+        }
+      }
+    }
+
     for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
       if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
         return true;
@@ -147,7 +155,7 @@ public class VenueHireSystem {
   public void makeBooking(String[] options) {
     if (bookingInfoChecker(options) == true) {
       Bookings newBooking = new Bookings(options);
-      bookingList.add(newBooking);
+      BookingList.add(newBooking);
     }
   }
 
