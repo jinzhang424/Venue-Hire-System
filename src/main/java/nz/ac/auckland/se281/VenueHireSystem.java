@@ -145,7 +145,9 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    
+    if (bookingInfoChecker(options) == true) {
+      Bookings newBooking = new Bookings(options);
+    }
   }
 
 
