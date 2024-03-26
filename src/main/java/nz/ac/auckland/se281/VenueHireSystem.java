@@ -94,17 +94,15 @@ public class VenueHireSystem {
     VenueList.add(venue);
   }
 
-  public String venueCodeNameMatcher(String venueCode, String[] bookingInfo) {
-    String correspondingVenueName = "";
+  public int venueFinder(String venueCode) {
 
     for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
-      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
-        correspondingVenueName = VenueList.get(i).getVenueName();
-        break;
+      if (VenueList.get(i).getVenueCode().equals(venueCode)) {
+        return i;
       }
     }
 
-    return correspondingVenueName;
+    return 0;
   }
 
   public void setSystemDate(String dateInput) {
@@ -122,16 +120,6 @@ public class VenueHireSystem {
     else { // Prints system date
       MessageCli.CURRENT_DATE.printMessage(systemDate);
     }
-  }
-
-  public String venueNameCodeMatcher(String venueCode) {
-    // Finds the venue name that corresponds to the input venue code in a list
-    for (int i = 0; i < VenueList.size(); i++) { 
-      if (VenueList.get(i).getVenueCode().equals(venueCode)) {
-        return VenueList.get(i).getVenueName();
-      }
-    }
-    return "";
   }
 
   public boolean bookingInfoChecker(String[] bookingInfo) {
@@ -159,7 +147,7 @@ public class VenueHireSystem {
     if (BookingList.size() > 0) { // Checks if the day we're trying to book is available or not
       for (int k = 0; k < BookingList.size(); k++) {
         if (bookingInfo[1].equals(BookingList.get(k).getBookingVenueDate())) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venueCodeNameMatcher(bookingInfo[0], bookingInfo), bookingInfo[1]);
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(VenueList.get((venueFinder(bookingInfo[0]))).getVenueName(), bookingInfo[1]);
           return false;
         }
       }
@@ -176,10 +164,10 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    if (bookingInfoChecker(options) == true) {
+    if (bookingInfoChecker(options) == true) { //Checking that inputs are valid and if the system is prepared to make bookings
       Bookings newBooking = new Bookings(options);
       BookingList.add(newBooking);
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), venueCodeNameMatcher(options[0], options), options[1], options[3]);
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), VenueList.get(venueFinder(options[0])).getVenueName(), options[1], options[3]);
     }
   }
 
