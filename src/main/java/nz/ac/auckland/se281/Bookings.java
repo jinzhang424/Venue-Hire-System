@@ -16,4 +16,7 @@ public class Bookings {
     numOfAttendees = BookingInfo[3]; 
   }
   
+  public String getBookingVenueDate() {
+    return this.bookingVenueDate;
+  }
 }
