@@ -21,5 +21,7 @@ public class Bookings {
   public String getBookingVenueDate() {
     return this.bookingVenueDate;
   }
-
+  public String getBookingReferece() {
+    return this.bookingReference;
+  }
 }

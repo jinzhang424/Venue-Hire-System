@@ -729,6 +729,7 @@ public class MainTest {
       assertContains("Venue not created: capacity must be a number.");
       assertDoesNotContain("Successfully created venue", true);
     }
+    
     public void T1_05_v2_invalid_base_hire_fee_negative() throws Exception {
       runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "-1");
 
