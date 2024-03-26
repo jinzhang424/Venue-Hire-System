@@ -153,7 +153,7 @@ public class VenueHireSystem {
 
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+    
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
