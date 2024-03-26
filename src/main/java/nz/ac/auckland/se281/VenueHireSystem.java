@@ -11,7 +11,7 @@ public class VenueHireSystem {
   private ArrayList<Venues> VenueList = new ArrayList<Venues>();
 
   //Creating a list for storing 
-  private ArrayList<Bookings> BookingList = new ArrayList<Bookings>();
+  private ArrayList<Bookings> bookingList = new ArrayList<Bookings>();
 
   private String systemDate = null;
 
@@ -147,6 +147,7 @@ public class VenueHireSystem {
   public void makeBooking(String[] options) {
     if (bookingInfoChecker(options) == true) {
       Bookings newBooking = new Bookings(options);
+      bookingList.add(newBooking);
     }
   }
 
