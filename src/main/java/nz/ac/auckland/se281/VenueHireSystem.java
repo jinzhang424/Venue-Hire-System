@@ -94,7 +94,18 @@ public class VenueHireSystem {
     VenueList.add(venue);
   }
 
+  public String venueCodeNameMatcher(String venueCode, String[] bookingInfo) {
+    String correspondingVenueName = "";
 
+    for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
+      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
+        correspondingVenueName = VenueList.get(i).getVenueName();
+        break;
+      }
+    }
+
+    return correspondingVenueName;
+  }
 
   public void setSystemDate(String dateInput) {
     systemDate = dateInput;
@@ -137,6 +148,7 @@ public class VenueHireSystem {
     if (BookingList.size() > 0) { // Checks if the day we're trying to book is available or not
       for (int k = 0; k < BookingList.size(); k++) {
         if (bookingInfo[1].equals(BookingList.get(k).getBookingVenueDate())) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venueCodeNameMatcher(bookingInfo[0], bookingInfo), bookingInfo[1]);
           return false;
         }
       }
@@ -147,8 +159,8 @@ public class VenueHireSystem {
         return true;
       }
     }
-
     MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
+
     return false;
   }
 
