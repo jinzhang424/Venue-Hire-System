@@ -15,4 +15,5 @@ public class Bookings {
     bookingVenueEmail = BookingInfo[2];
     numOfAttendees = BookingInfo[3]; 
   }
+  
 }
