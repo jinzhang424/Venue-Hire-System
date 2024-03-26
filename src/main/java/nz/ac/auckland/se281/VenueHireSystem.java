@@ -124,7 +124,8 @@ public class VenueHireSystem {
     }
   }
 
-  public String venueNameCodeMatcher(String venueCode) { // Finds the venue name that corresponds to the input venue code in a list
+  public String venueNameCodeMatcher(String venueCode) {
+    // Finds the venue name that corresponds to the input venue code in a list
     for (int i = 0; i < VenueList.size(); i++) { 
       if (VenueList.get(i).getVenueCode().equals(venueCode)) {
         return VenueList.get(i).getVenueName();
@@ -144,6 +145,7 @@ public class VenueHireSystem {
       return false;
     }
 
+    // Seperating Dates in to sections
     String[] dateParts = bookingInfo[1].split("/");
     String[] systemDateParts = systemDate.split("/");
 
@@ -163,7 +165,7 @@ public class VenueHireSystem {
       }
     }
 
-    for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
+    for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code to check if venue exists
       if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
         return true;
       }
@@ -177,7 +179,7 @@ public class VenueHireSystem {
     if (bookingInfoChecker(options) == true) {
       Bookings newBooking = new Bookings(options);
       BookingList.add(newBooking);
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), venueCodeNameMatcher(options[0], options), options[3]);
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), venueCodeNameMatcher(options[0], options), options[1], options[3]);
     }
   }
 
