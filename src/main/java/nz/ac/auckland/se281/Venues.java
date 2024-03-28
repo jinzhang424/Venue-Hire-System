@@ -1,7 +1,5 @@
 package nz.ac.auckland.se281;
 
-import com.github.houbb.data.struct.core.util.list.ArrayList;
-
 public class Venues {
   private String VENUE_NAME = null;
   private String VENUE_CODE = null;
