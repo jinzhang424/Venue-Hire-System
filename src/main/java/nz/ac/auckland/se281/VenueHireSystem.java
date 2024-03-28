@@ -165,7 +165,27 @@ public class VenueHireSystem {
         return false;
       }
     }
-    // Checks if the day we're trying to book is available or not
+
+    // Checking if the date we're trying to book is available or not
+    if (isDateAvailable(bookingInfo) == false) {
+      return false;
+    }
+
+    // Looks through VenueList for matching venue code to check if venue exists
+    for (int i = 0; i < VenueList.size(); i++) { 
+      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
+        return true;
+      }
+    }
+    MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
+
+    return false;
+  }
+
+
+  // This method checks if the day we're trying to book is available or not
+  public boolean isDateAvailable(String[] bookingInfo) {
+
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
         if (bookingInfo[1].equals(BookingList.get(k).getBookingVenueDate())) {
@@ -178,15 +198,7 @@ public class VenueHireSystem {
       }
     }
 
-    // Looks through VenueList for matching venue code to check if venue exists
-    for (int i = 0; i < VenueList.size(); i++) { 
-      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
-        return true;
-      }
-    }
-    MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
-
-    return false;
+    return true;
   }
 
 
@@ -216,9 +228,11 @@ public class VenueHireSystem {
 
   public void makeBooking(String[] options) {
 
-    if (bookingInfoChecker(options) == true) { //Checking that inputs are valid and if the system is prepared to make bookings
+    //Checking that inputs are valid and if the system is prepared to make bookings
+    if (bookingInfoChecker(options) == true) { 
 
-      options[3] = bookingAttendeesChecker(options[3], options[0]); // Converts the attendees value to the valid damount
+      // Converts the attendees value to the valid damount
+      options[3] = bookingAttendeesChecker(options[3], options[0]);
 
       Bookings newBooking = new Bookings(options);
 
@@ -227,6 +241,14 @@ public class VenueHireSystem {
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(),
         VenueList.get(venueFinder(options[0])).getVenueName(), options[1], options[3]);
     }
+  }
+
+
+
+  public String nextAvailableDate() {
+    
+
+    return "";
   }
 
 
