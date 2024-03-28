@@ -8,50 +8,61 @@ import java.util.ArrayList;
 public class VenueHireSystem {
 
   //Creating a list for storing venues
-  private ArrayList<Venues> VenueList = new ArrayList<Venues>();
+  private ArrayList <Venues> VenueList = new ArrayList <Venues>();
 
   //Creating a list for storing 
-  private ArrayList<Bookings> BookingList = new ArrayList<Bookings>();
+  private ArrayList <Bookings> BookingList = new ArrayList <Bookings>();
 
   private String systemDate = null;
 
   public VenueHireSystem() {}
 
   public String getSystemDate() {
+
     return systemDate;
   }
 
+
   public void printVenues() {
     if (VenueList.size() == 0) { //Prints message for when no venues have been created
+
       MessageCli.NO_VENUES.printMessage();
     }
     else if (VenueList.size() == 1) { //Prints message for when there is 1 venue
+
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
-      MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName(), VenueList.get(0).getVenueCode(), 
+      MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName()
+      , VenueList.get(0).getVenueCode(), 
+      
       VenueList.get(0).getVenueCapacity(), VenueList.get(0).hireFee());
     }
     else { //Prints message for when there is more than 1 venue
       MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
+
       for (int i = 0; i < VenueList.size(); i++) {
+
         MessageCli.VENUE_ENTRY.printMessage(VenueList.get(i).getVenueName(), VenueList.get(i).getVenueCode(), 
-      VenueList.get(i).getVenueCapacity(), VenueList.get(i).hireFee());
+        VenueList.get(i).getVenueCapacity(), VenueList.get(i).hireFee());
       }
     }
   }
 
 
 
-  public void createVenue(String venueName, String venueCode, String venueCapacity, String hireFee) {
+  public void createVenue(String venueName, String venueCode
+  , String venueCapacity, String hireFee) {
 
     // Checks for invalid venue name
     if (venueName.replaceAll("\\s", "") == "") {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+      
       return;
     }
     else if (VenueList.size() > 0) { // Checks if the venue code entered is unique
       for (int i = 0; i < VenueList.size(); i++) {
         if (VenueList.get(i).getVenueCode().equalsIgnoreCase(venueCode)) {
           MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, VenueList.get(i).getVenueName());
+
           return;
         }
       }
@@ -168,10 +179,12 @@ public class VenueHireSystem {
     int capacityOfVenue = Integer.parseInt(VenueList.get(venueFinder(venueCode)).getVenueCapacity()); 
 
     if (numOfAttendees < capacityOfVenue/4) { // Checks if the number of attendees is 25% of venue capacity
+
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(bookingAttendees, Integer.toString(capacityOfVenue/4), VenueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue/4);
     }
     else if (numOfAttendees > capacityOfVenue) { // Checks if the number of attendees exceeds venue capacity
+      
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(bookingAttendees, VenueList.get(venueFinder(venueCode)).getVenueCapacity(), VenueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue);
     }
@@ -181,10 +194,15 @@ public class VenueHireSystem {
   public void makeBooking(String[] options) {
 
     if (bookingInfoChecker(options) == true) { //Checking that inputs are valid and if the system is prepared to make bookings
+
       options[3] = bookingAttendeesChecker(options[3], options[0]); // Converts the attendees value to the valid damount
+
       Bookings newBooking = new Bookings(options);
+
       BookingList.add(newBooking);
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(), VenueList.get(venueFinder(options[0])).getVenueName(), options[1], options[3]);
+
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(newBooking.getBookingReferece(),
+        VenueList.get(venueFinder(options[0])).getVenueName(), options[1], options[3]);
     }
   }
 
