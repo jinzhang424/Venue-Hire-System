@@ -1,38 +1,38 @@
 package nz.ac.auckland.se281;
 
 public class Venues {
-  private String VENUE_NAME = null;
-  private String VENUE_CODE = null;
-  private String VENUE_CAPACITY = null;
-  private String HIRE_FEE = null;
+  private String venueName = null;
+  private String venueCode = null;
+  private String venueCapacity = null;
+  private String hireFee = null;
 
   
   public Venues(String venueName, String venueCode, String venueCapacity, String hireFee) {
 
-    this.VENUE_NAME = venueName;
-    this.VENUE_CODE = venueCode;
-    this.VENUE_CAPACITY = venueCapacity;
-    this.HIRE_FEE = hireFee;
+    this.venueName = venueName;
+    this.venueCode = venueCode;
+    this.venueCapacity = venueCapacity;
+    this.hireFee = hireFee;
     
   }
 
   // Getting venue name
   public String getVenueName() {
-    return this.VENUE_NAME;
+    return this.venueName;
   }
 
   // Getting venue code
   public String getVenueCode() {
-    return this.VENUE_CODE;
+    return this.venueCode;
   }
 
   // Getting venue capacity
   public String getVenueCapacity() {
-    return this.VENUE_CAPACITY;
+    return this.venueCapacity;
   }
 
   // Getting venue hire fee
   public String hireFee() {
-    return this.HIRE_FEE;
+    return this.hireFee;
   }
 }
