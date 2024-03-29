@@ -302,6 +302,18 @@ public class VenueHireSystem {
   }
 
 
+  // This method checks if a booking has been made for a venue
+  public boolean isThereBookingForVenue(String venueCode) {
+
+    // Loops through the booking list to check if a booking has been made for a particular venue
+    for (int i = 0; i < BookingList.size(); i++) {
+      if (BookingList.get(i).getBookingVenueCode().equals(venueCode)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
   public void printBookings(String venueCode) {
     
