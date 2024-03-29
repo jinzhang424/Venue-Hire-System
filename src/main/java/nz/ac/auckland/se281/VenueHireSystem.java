@@ -196,13 +196,13 @@ public class VenueHireSystem {
 
   // This method checks if the day we're trying to book for this venue is available or not
   public boolean isDateAvailableForVenue(String bookingDate, String codeOfVenue) {
-
+    
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
         // Checks if there the particular venue has a matching date
         if (codeOfVenue.equals(BookingList.get(k).getBookingVenueCode()) 
         && bookingDate.equals(BookingList.get(k).getBookingVenueDate())) {
-
+          
           return false;
         }
       }
@@ -275,9 +275,16 @@ public class VenueHireSystem {
       
       // Increments the day of the date by 1
       availableDateParts[0] = String.valueOf(Integer.parseInt(availableDateParts[0]) + 1); 
-
+      
       // Puts split string back together
       availableDate = availableDateParts[0] + "/" + availableDateParts[1] + "/" + availableDateParts[2];
+
+      // Checks if the string value is less than 9 and if it is, concatenate a 0 to left
+      if (Integer.parseInt(availableDateParts[0]) < 10) {
+        availableDate = "0" + availableDate;
+      }
+
+      System.out.println(availableDate);
     }
 
     return availableDate;
