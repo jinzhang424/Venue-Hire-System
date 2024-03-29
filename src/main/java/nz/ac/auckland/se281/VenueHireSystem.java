@@ -323,9 +323,14 @@ public class VenueHireSystem {
     }
     // Checks if there are bookings for the venue
     else if (isThereBookingForVenue(venueCode) == false) {
-      MessageCli.PRINT_BOOKINGS_NONE.printMessage(
-        VenueList.get(venueFinder(venueCode)).getVenueName());
+      
+      String bookingName = VenueList.get(venueFinder(venueCode)).getVenueName();
+
+      MessageCli.PRINT_BOOKINGS_HEADER.printMessage(bookingName);
+      
+      MessageCli.PRINT_BOOKINGS_NONE.printMessage(bookingName);
     }
+    // Prints out all the bookings for the venue
     else {
       for (int i = 0; i < BookingList.size(); i++) {
 
