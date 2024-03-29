@@ -174,7 +174,7 @@ public class VenueHireSystem {
     }
 
     // Checking if the date we're trying to book is available or not
-    if (isDateAvailable(bookingInfo[1]) == false) {
+    if (isDateAvailableForVenue(bookingInfo[1], bookingInfo[0]) == false) {
       
       MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
         VenueList.get((venueFinder(bookingInfo[0]))).getVenueName(), bookingInfo[1]);
@@ -195,12 +195,13 @@ public class VenueHireSystem {
 
 
   // This method checks if the day we're trying to book is available or not
-  public boolean isDateAvailable(String date) {
+  public boolean isDateAvailableForVenue(String bookingDate, String codeOfVenue) {
 
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
         // Checks if there is a matching date in the booking list
-        if (date.equals(BookingList.get(k).getBookingVenueDate())) {
+        if (codeOfVenue.equals(BookingList.get(k).getBookingVenueCode()) 
+        && bookingDate.equals(BookingList.get(k).getBookingVenueDate())) {
 
           return false;
         }
