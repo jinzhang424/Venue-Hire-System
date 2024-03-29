@@ -317,6 +317,30 @@ public class VenueHireSystem {
 
   public void printBookings(String venueCode) {
     
+    // Checks if venue code exists
+    if (doesVenueCodeExist(venueCode) == false) {
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    }
+    // Checks if there are bookings for the venue
+    else if (isThereBookingForVenue(venueCode) == false) {
+      MessageCli.PRINT_BOOKINGS_NONE.printMessage(
+        VenueList.get(venueFinder(venueCode)).getVenueName());
+    }
+    else {
+      for (int i = 0; i < BookingList.size(); i++) {
+
+        // Matching the venue code with the booking
+        if (BookingList.get(i).getBookingVenueCode().equals(venueCode) == true) {
+          
+          MessageCli.PRINT_BOOKINGS_HEADER.printMessage(
+            VenueList.get(venueFinder(venueCode)).getVenueName());
+
+          MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
+            BookingList.get(i).getBookingReferece()
+            ,BookingList.get(i).getBookingVenueDate());
+        }
+      }
+    }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
