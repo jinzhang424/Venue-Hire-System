@@ -255,6 +255,11 @@ public class VenueHireSystem {
 
   public String nextAvailableDate() {
 
+    // Checks for when the system date is null
+    if (systemDate == null) {
+      return "";
+    }
+    
     String availableDate = systemDate;
     String availableDateParts[] = availableDate.split("/");
 
