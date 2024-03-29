@@ -182,14 +182,25 @@ public class VenueHireSystem {
       return false;
     }
 
-    // Looks through VenueList for matching venue code to check if venue exists
+    // Checking if venue code exists
+    if (doesVenueCodeExist(bookingInfo[0]) == false) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
+
+      return false;
+    }
+
+    return true;
+  }
+
+  public boolean doesVenueCodeExist(String codeOfVenue) {
+    
+    // Loops through the venue list to check if the venue exists
     for (int i = 0; i < VenueList.size(); i++) { 
-      if (VenueList.get(i).getVenueCode().equals(bookingInfo[0])) {
+      if (VenueList.get(i).getVenueCode().equals(codeOfVenue)) {
         return true;
       }
     }
-    MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(bookingInfo[0]);
-
+    
     return false;
   }
 
