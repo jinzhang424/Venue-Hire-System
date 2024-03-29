@@ -33,18 +33,24 @@ public class VenueHireSystem {
     else if (VenueList.size() == 1) {
 
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
-      MessageCli.VENUE_ENTRY.printMessage(VenueList.get(0).getVenueName()
-      , VenueList.get(0).getVenueCode(), 
-      
-      VenueList.get(0).getVenueCapacity(), VenueList.get(0).hireFee());
+      MessageCli.VENUE_ENTRY.printMessage(
+        VenueList.get(0).getVenueName()
+      , VenueList.get(0).getVenueCode()
+      , VenueList.get(0).getVenueCapacity()
+      , VenueList.get(0).hireFee()
+      , nextAvailableDate());
     }
     //Prints message for when there is more than 1 venue
     else { 
       MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
 
       for (int i = 0; i < VenueList.size(); i++) {
-        MessageCli.VENUE_ENTRY.printMessage(VenueList.get(i).getVenueName(), VenueList.get(i).getVenueCode(), 
-        VenueList.get(i).getVenueCapacity(), VenueList.get(i).hireFee());
+        MessageCli.VENUE_ENTRY.printMessage(
+          VenueList.get(i).getVenueName()
+        , VenueList.get(i).getVenueCode()
+        , VenueList.get(i).getVenueCapacity()
+        , VenueList.get(i).hireFee()
+        , nextAvailableDate());
       }
     }
   }
@@ -251,6 +257,11 @@ public class VenueHireSystem {
 
     String availableDate = systemDate;
     String availableDateParts[] = availableDate.split("/");
+
+    // Checks for when the booking size is 0
+    if (BookingList.size() == 0) {
+      return availableDate;
+    }
 
     // Keeps looping until we find the next available date
     while(isDateAvailable(availableDate) == false) {
