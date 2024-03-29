@@ -192,7 +192,7 @@ public class VenueHireSystem {
 
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
-        // Compares the date we're book to dates in the booking list
+        // Checks if there is a matching date in the booking list
         if (date.equals(BookingList.get(k).getBookingVenueDate())) {
 
           return false;
@@ -248,9 +248,21 @@ public class VenueHireSystem {
 
 
   public String nextAvailableDate() {
-    
 
-    return "";
+    String availableDate = systemDate;
+    String availableDateParts[] = availableDate.split("/");
+
+    // Keeps looping until we find the next available date
+    while(isDateAvailable(availableDate) == false) {
+
+      // Increments the day of the date by 1
+      availableDateParts[0] = String.valueOf(Integer.parseInt(availableDate) + 1); 
+
+      // Puts split string back together
+      availableDate = availableDateParts[0] + "/" + availableDateParts[1] + "/" + availableDateParts[2];
+    }
+
+    return availableDate;
   }
 
 
