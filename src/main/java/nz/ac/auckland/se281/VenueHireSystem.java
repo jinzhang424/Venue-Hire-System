@@ -271,7 +271,7 @@ public class VenueHireSystem {
 
     // Keeps looping until we find the next available date
     while(isDateAvailable(availableDate) == false) {
-
+      
       // Increments the day of the date by 1
       availableDateParts[0] = String.valueOf(Integer.parseInt(availableDateParts[0]) + 1); 
 
