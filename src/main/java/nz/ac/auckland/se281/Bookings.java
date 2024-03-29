@@ -22,4 +22,7 @@ public class Bookings {
   public String getBookingReferece() {
     return this.bookingReference;
   }
+  public String getBookingVenueCode() {
+    return this.bookingVenueCode;
+  }
 }
