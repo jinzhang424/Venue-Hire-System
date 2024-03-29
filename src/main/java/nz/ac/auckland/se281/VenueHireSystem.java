@@ -164,6 +164,7 @@ public class VenueHireSystem {
     String[] dateParts = bookingInfo[1].split("/");
     String[] systemDateParts = systemDate.split("/");
 
+
     // Checks if the booking date is in the past
     for (int j = 2; j >= 0; j--) {
       if (Integer.parseInt(systemDateParts[j]) > Integer.parseInt(dateParts[j])) {
@@ -272,7 +273,7 @@ public class VenueHireSystem {
     while(isDateAvailable(availableDate) == false) {
 
       // Increments the day of the date by 1
-      availableDateParts[0] = String.valueOf(Integer.parseInt(availableDate) + 1); 
+      availableDateParts[0] = String.valueOf(Integer.parseInt(availableDateParts[0]) + 1); 
 
       // Puts split string back together
       availableDate = availableDateParts[0] + "/" + availableDateParts[1] + "/" + availableDateParts[2];
