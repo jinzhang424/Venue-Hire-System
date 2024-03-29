@@ -38,7 +38,7 @@ public class VenueHireSystem {
       , VenueList.get(0).getVenueCode()
       , VenueList.get(0).getVenueCapacity()
       , VenueList.get(0).hireFee()
-      , nextAvailableDate());
+      , nextAvailableDate(VenueList.get(0).getVenueCode()));
     }
     //Prints message for when there is more than 1 venue
     else { 
@@ -50,7 +50,7 @@ public class VenueHireSystem {
         , VenueList.get(i).getVenueCode()
         , VenueList.get(i).getVenueCapacity()
         , VenueList.get(i).hireFee()
-        , nextAvailableDate());
+        , nextAvailableDate(VenueList.get(i).getVenueCode()));
       }
     }
   }
@@ -194,12 +194,12 @@ public class VenueHireSystem {
   }
 
 
-  // This method checks if the day we're trying to book is available or not
+  // This method checks if the day we're trying to book for this venue is available or not
   public boolean isDateAvailableForVenue(String bookingDate, String codeOfVenue) {
 
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
-        // Checks if there is a matching date in the booking list
+        // Checks if there the particular venue has a matching date
         if (codeOfVenue.equals(BookingList.get(k).getBookingVenueCode()) 
         && bookingDate.equals(BookingList.get(k).getBookingVenueDate())) {
 
@@ -255,7 +255,7 @@ public class VenueHireSystem {
 
 
 
-  public String nextAvailableDate() {
+  public String nextAvailableDate(String codeOfVenue) {
 
     // Checks for when the system date is null
     if (systemDate == null) {
@@ -270,8 +270,8 @@ public class VenueHireSystem {
       return availableDate;
     }
 
-    // Keeps looping until we find the next available date
-    while(isDateAvailable(availableDate) == false) {
+    // Keeps looping until we find the next available date for this particular venue
+    while(isDateAvailableForVenue(availableDate, codeOfVenue) == false) {
       
       // Increments the day of the date by 1
       availableDateParts[0] = String.valueOf(Integer.parseInt(availableDateParts[0]) + 1); 
