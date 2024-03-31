@@ -5,9 +5,10 @@ public abstract class Services extends Bookings{
   private String typeOfService;
 
   public Services(String bookingReferenceCode, String service) {
-
-    super(null);
     
+    super(null);
     this.typeOfService = service;
   }
+
+  public abstract int getTotalCostOfThisService();
 }
