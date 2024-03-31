@@ -369,9 +369,11 @@ public class VenueHireSystem {
     if (doesBookingReferenceExist(bookingReference) == true) {
 
       Catering newCatering = new Catering(cateringType, bookingReference);
-      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.getName(), bookingReference);
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering " + "(" + cateringType.getName() + ")"
+      , bookingReference);
     }
     else {
+      
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
     }
     
