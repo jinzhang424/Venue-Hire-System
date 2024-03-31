@@ -10,5 +10,5 @@ public abstract class Services extends Bookings{
     this.typeOfService = service;
   }
 
-  public abstract int getTotalCostOfThisService();
+  public abstract int getTotalCostOfThisService(int numOfAttendees);
 }
