@@ -348,11 +348,33 @@ public class VenueHireSystem {
     }
   }
 
+
+  public boolean doesBookingReferenceExist(String bookingReference) {
+    
+    // Looks through the booking list to check if the booking reference exists
+    for (int i = 0; i < BookingList.size(); i++) {
+      if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
+
   public void addCateringService(String bookingReference, CateringType cateringType) {
     
-    Catering newCatering = new Catering(cateringType, bookingReference);
+    // Checking if the booking reference exists or not
+    if (doesBookingReferenceExist(bookingReference) == true) {
 
-    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.getName(), bookingReference);
+      Catering newCatering = new Catering(cateringType, bookingReference);
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.getName(), bookingReference);
+    }
+    else {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
+    }
+    
   }
 
   public void addServiceMusic(String bookingReference) {
