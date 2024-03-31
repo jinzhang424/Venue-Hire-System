@@ -114,7 +114,7 @@ public class VenueHireSystem {
   }
 
 
-
+  // This method finds the index of where a venue is in the list
   public int venueFinder(String venueCode) {
 
     for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
@@ -323,7 +323,7 @@ public class VenueHireSystem {
     }
     // Checks if there are bookings for the venue
     else if (isThereBookingForVenue(venueCode) == false) {
-      
+
       String bookingName = VenueList.get(venueFinder(venueCode)).getVenueName();
 
       MessageCli.PRINT_BOOKINGS_HEADER.printMessage(bookingName);
@@ -349,7 +349,10 @@ public class VenueHireSystem {
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    // TODO implement this method
+    
+    Catering newCatering = new Catering(cateringType, bookingReference);
+
+    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.getName(), bookingReference);
   }
 
   public void addServiceMusic(String bookingReference) {
