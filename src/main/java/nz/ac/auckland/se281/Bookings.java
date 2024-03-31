@@ -25,4 +25,10 @@ public class Bookings {
   public String getBookingVenueCode() {
     return this.bookingVenueCode;
   }
+  public String getNumOfAttendees() {
+    return numOfAttendees;
+  }
+  public String getBookingVenueEmail() {
+    return bookingVenueEmail;
+  }
 }
