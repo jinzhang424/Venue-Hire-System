@@ -510,5 +510,13 @@ public class VenueHireSystem {
 
       MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
     }
+
+    if (floralIndex != -1) { // Checking if floral was added to this booking
+
+      Floral isFloral = (Floral)ServiceList.get(floralIndex);
+      
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(isFloral.getFloralType().getName()
+      , String.valueOf(ServiceList.get(floralIndex).getCostOfService()));
+    }
   }
 }

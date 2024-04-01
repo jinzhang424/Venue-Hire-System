@@ -7,6 +7,7 @@ public class Floral extends Services{
   public Floral(String referenceCode, int numOfAttendees, Types.FloralType floralType) {
 
     super(referenceCode, "Floral", floralType.getCost());
+    this.floralType = floralType;
   }
 
   public Types.FloralType getFloralType() {
