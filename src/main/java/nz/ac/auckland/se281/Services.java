@@ -11,6 +11,8 @@ public abstract class Services{
     this.typeOfService = service;
   }
 
+  public abstract int totalCostOfThisService(int numOfAttendeees);
+
   public String getBookingReferenceCode() {
     
     return this.bookingReferenceCode;
