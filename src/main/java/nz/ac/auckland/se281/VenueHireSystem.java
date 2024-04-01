@@ -482,7 +482,7 @@ public class VenueHireSystem {
     int musicIndex = serviceFinder(bookingReference, "Music");
     int floralIndex = serviceFinder(bookingReference, "Floral");
 
-    int totalCostOfServices = 0;
+    int totalCostOfServices = Integer.parseInt(VenueList.get(venueIndex).getHireFee());
 
     // Printing details for the top half of the invoice
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference
