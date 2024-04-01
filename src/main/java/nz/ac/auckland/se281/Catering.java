@@ -13,4 +13,12 @@ public class Catering extends Services{
     
     this.cateringType = typeOfCatering;
   }
+
+
+
+  @Override
+  public int totalCostOfThisService(int numOfAttendees) {
+    
+    return this.cateringType.getCostPerPerson() * numOfAttendees;
+  }
 }

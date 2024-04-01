@@ -8,4 +8,6 @@ public abstract class Services{
     
     this.typeOfService = service;
   }
+
+  public abstract int totalCostOfThisService(int numOfAttendees);
 }
