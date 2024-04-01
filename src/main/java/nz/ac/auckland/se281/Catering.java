@@ -16,4 +16,8 @@ public class Catering extends Services{
   public int getCateringCost() {
     return totalCostOfCatering;
   }
+
+  public Types.CateringType getCateringType() {
+    return this.cateringType;
+  }
 }
