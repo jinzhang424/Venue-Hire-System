@@ -419,10 +419,35 @@ public class VenueHireSystem {
     }
   }
 
+
+    
   public void addServiceFloral(String bookingReference, FloralType floralType) {
-    // TODO implement this method
+    
+    // Checking if booking reference exists
+    if (doesBookingReferenceExist(bookingReference) == true) {
+      
+      Floral newFloral = new Floral(bookingReference, findNumOfAttendees(bookingReference), floralType);
+
+      ServiceList.add(newFloral);
+
+      // Checking if it's a standard floral
+      if (newFloral.getFloralType().equals(FloralType.STANDARD)) {
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (Standard)", bookingReference);
+      }
+      // Checking if it's a deluxe floral
+      else {
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (Deluxe)", bookingReference);
+      }
+
+    }
+    // When booking reference doesn't exist
+    else {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
+    }
   }
 
+
+  
   public void viewInvoice(String bookingReference) {
     // TODO implement this method
   }
