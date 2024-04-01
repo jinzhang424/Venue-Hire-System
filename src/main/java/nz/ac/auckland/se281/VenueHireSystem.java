@@ -429,15 +429,8 @@ public class VenueHireSystem {
       Floral newFloral = new Floral(bookingReference, findNumOfAttendees(bookingReference), floralType);
 
       ServiceList.add(newFloral);
-
-      // Checking if it's a standard floral
-      if (newFloral.getFloralType().equals(FloralType.STANDARD)) {
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (Standard)", bookingReference);
-      }
-      // Checking if it's a deluxe floral
-      else {
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (Deluxe)", bookingReference);
-      }
+ 
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral " + "(" + floralType.getName() + ")", bookingReference);
 
     }
     // When booking reference doesn't exist
@@ -501,8 +494,7 @@ public class VenueHireSystem {
     // Latter half of the invoice
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
 
-    // Checking if catering was added to this booking
-    if (cateringIndex != -1) {
+    if (cateringIndex != -1) { // Checking if catering was added to this booking
       
       Catering isCatering = (Catering)ServiceList.get(cateringIndex);
 
@@ -513,11 +505,10 @@ public class VenueHireSystem {
       MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(isCatering.getCateringType().getName()
       , String.valueOf(costOfCatering*numOfAttendees));
     }
-    // Checking if music was added to this booking
-    if (musicIndex != -1) {
+
+    if (musicIndex != -1) { // Checking if music was added to this booking
 
       MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
     }
-
   }
 }
