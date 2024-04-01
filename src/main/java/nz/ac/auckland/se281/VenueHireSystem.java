@@ -464,9 +464,10 @@ public class VenueHireSystem {
   public int serviceFinder(String bookingReference, String typeOfService) {
 
     for (int i = 0; i < ServiceList.size(); i++) {
+      System.out.println(ServiceList.get(i).getBookingReferenceCode());
       // Checks if the booking reference matches and the typeOfService matches
       if (ServiceList.get(i).getBookingReferenceCode().equals(bookingReference)
-      && ServiceList.get(i).getTypeOfService().equals(typeOfService)) {
+      & ServiceList.get(i).getTypeOfService().equals(typeOfService)) {
         return i;
       }
     }
@@ -482,6 +483,10 @@ public class VenueHireSystem {
     int bookingIndex = bookingFinder(bookingReference);
     int venueIndex = venueFinder(BookingList.get(bookingIndex).getBookingVenueCode());
 
+    int cateringIndex = serviceFinder(bookingReference, "Catering");
+    int musicIndex = serviceFinder(bookingReference, "Music");
+    int floralIndex = serviceFinder(bookingReference, "Floral");
+
     // Printing details for the top half of the invoice
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference
     , BookingList.get(bookingIndex).getBookingVenueEmail()
@@ -490,6 +495,23 @@ public class VenueHireSystem {
     , BookingList.get(bookingIndex).getNumOfAttendees()
     , VenueList.get(venueIndex).getVenueName());
 
+    // Latter half of the invoice
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
+
+    // Checking if catering was added to a booking
+    if (cateringIndex != -1) {
+      
+      Catering isCatering = (Catering)ServiceList.get(cateringIndex);
+
+      int numOfAttendees = Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees());
+      int costOfCatering = isCatering.getCostOfService();
+
+      System.out.println("costOfCatering: " + costOfCatering);
+      System.out.println("numOfAttendees: " + Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees()));
+
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(isCatering.getCateringType().getName()
+      , String.valueOf(costOfCatering*numOfAttendees));
+    }
+
   }
 }
