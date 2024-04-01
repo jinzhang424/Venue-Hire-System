@@ -10,6 +10,7 @@ public abstract class Services{
     
     this.bookingReferenceCode = referenceCode;
     this.typeOfService = service;
+    this.costOfService = serviceCost;
   }
 
   public String getBookingReferenceCode() {
