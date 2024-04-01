@@ -361,7 +361,25 @@ public class VenueHireSystem {
     return false;
   }
 
+
+  
   private ArrayList <Services> serviceList = new ArrayList <Services>();
+
+
+  // This method finds the number of attendees given a booking reference code
+  public int findNumOfAttendees(String bookingReference) {
+
+    for (Bookings booking: BookingList) {
+      if (booking.getBookingReferece().equals(bookingReference)) {
+        
+        return Integer.parseInt(booking.getNumOfAttendees());
+      }
+    }
+
+    return 0;
+  }
+
+
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     
