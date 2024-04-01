@@ -15,4 +15,8 @@ public abstract class Services{
     
     return this.bookingReferenceCode;
   }
+
+  public Services typeOfService() {
+    return this.typeOfService();
+  }
 }
