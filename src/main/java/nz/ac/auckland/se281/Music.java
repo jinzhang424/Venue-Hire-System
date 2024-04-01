@@ -16,4 +16,8 @@ public class Music extends Services{
 
     return 500 * numOfAttendees;
   }
+
+  public int getMusicCost() {
+    return totalOfCostMusic;
+  }
 }

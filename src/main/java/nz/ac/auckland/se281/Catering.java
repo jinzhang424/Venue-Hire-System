@@ -20,4 +20,8 @@ public class Catering extends Services{
     
     return this.cateringType.getCostPerPerson() * numOfAttendees;
   }
+
+  public int getCateringCost() {
+    return totalCostOfCatering;
+  }
 }
