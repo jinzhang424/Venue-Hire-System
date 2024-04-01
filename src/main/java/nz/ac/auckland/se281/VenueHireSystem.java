@@ -361,7 +361,7 @@ public class VenueHireSystem {
     return false;
   }
 
-
+  private ArrayList <Services> serviceList = new ArrayList <Services>();
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     
@@ -371,6 +371,8 @@ public class VenueHireSystem {
       Catering newCatering = new Catering(cateringType, bookingReference);
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering " + "(" + cateringType.getName() + ")"
       , bookingReference);
+
+      serviceList.add(newCatering);
     }
     else {
       
