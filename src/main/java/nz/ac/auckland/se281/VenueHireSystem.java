@@ -480,9 +480,12 @@ public class VenueHireSystem {
   
   public void viewInvoice(String bookingReference) {
 
+
+    // Finding where the corresponding venue and booking is in their respective lists
     int bookingIndex = bookingFinder(bookingReference);
     int venueIndex = venueFinder(BookingList.get(bookingIndex).getBookingVenueCode());
 
+    // Finding where each corresponding service type is in the service list
     int cateringIndex = serviceFinder(bookingReference, "Catering");
     int musicIndex = serviceFinder(bookingReference, "Music");
     int floralIndex = serviceFinder(bookingReference, "Floral");
@@ -498,19 +501,22 @@ public class VenueHireSystem {
     // Latter half of the invoice
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
 
-    // Checking if catering was added to a booking
+    // Checking if catering was added to this booking
     if (cateringIndex != -1) {
       
       Catering isCatering = (Catering)ServiceList.get(cateringIndex);
 
+      // Finding the number of attendees and cost of catering for calculating total cost
       int numOfAttendees = Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees());
       int costOfCatering = isCatering.getCostOfService();
 
-      System.out.println("costOfCatering: " + costOfCatering);
-      System.out.println("numOfAttendees: " + Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees()));
-
       MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(isCatering.getCateringType().getName()
       , String.valueOf(costOfCatering*numOfAttendees));
+    }
+    // Checking if music was added to this booking
+    if (musicIndex != -1) {
+
+      MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
     }
 
   }
