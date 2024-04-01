@@ -363,7 +363,7 @@ public class VenueHireSystem {
 
 
   
-  private ArrayList <Services> serviceList = new ArrayList <Services>();
+  private ArrayList <Services> ServiceList = new ArrayList <Services>();
 
 
   // This method finds the number of attendees given a booking reference code
@@ -391,7 +391,7 @@ public class VenueHireSystem {
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering " + "(" + cateringType.getName() + ")"
       , bookingReference);
 
-      serviceList.add(newCatering);
+      ServiceList.add(newCatering);
     }
     // For when reference code doesn't exist
     else {
@@ -401,8 +401,22 @@ public class VenueHireSystem {
     
   }
 
+
+
   public void addServiceMusic(String bookingReference) {
-    // TODO implement this method
+    
+    // Checking if the booking reference exists
+    if (doesBookingReferenceExist(bookingReference) == true) {
+
+      Music newMusic = new Music(bookingReference, findNumOfAttendees(bookingReference));
+      
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
+
+      ServiceList.add(newMusic);
+    }
+    else {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
+    }
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
