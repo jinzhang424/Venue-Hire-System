@@ -386,12 +386,14 @@ public class VenueHireSystem {
     // Checking if the booking reference exists or not
     if (doesBookingReferenceExist(bookingReference) == true) {
 
-      Catering newCatering = new Catering(cateringType, bookingReference);
+      Catering newCatering = new Catering(cateringType, bookingReference, findNumOfAttendees(bookingReference));
+
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering " + "(" + cateringType.getName() + ")"
       , bookingReference);
 
       serviceList.add(newCatering);
     }
+    // For when reference code doesn't exist
     else {
       
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
