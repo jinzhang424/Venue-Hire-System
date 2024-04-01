@@ -447,8 +447,21 @@ public class VenueHireSystem {
   }
 
 
+  // Returns the index of the booking that matches the reference code in the booking list
+  public int bookingFinder(String bookingReference) {
+
+    for (int i = 0; i < BookingList.size(); i++) {
+      if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
+        return i;
+      }
+    }
+
+    return 0;
+  }
+
+
   
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+    
   }
 }
