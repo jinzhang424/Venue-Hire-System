@@ -255,7 +255,7 @@ public class VenueHireSystem {
       // Converts the attendees value to the valid damount
       options[3] = bookingAttendeesChecker(options[3], options[0]);
 
-      Bookings newBooking = new Bookings(options);
+      Bookings newBooking = new Bookings(options, systemDate);
 
       BookingList.add(newBooking);
 
@@ -449,7 +449,7 @@ public class VenueHireSystem {
 
   // Returns the index of the booking that matches the reference code in the booking list
   public int bookingFinder(String bookingReference) {
-
+    
     for (int i = 0; i < BookingList.size(); i++) {
       if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
         return i;
@@ -462,6 +462,5 @@ public class VenueHireSystem {
 
   
   public void viewInvoice(String bookingReference) {
-    
   }
 }
