@@ -2,19 +2,11 @@ package nz.ac.auckland.se281;
 
 public class Music extends Services{
 
-  private int totalOfCostMusic = 0;
+  private int totalOfCostMusic = 500;
   
   public Music(String bookingReference, int numOfAttendees) {
     super(bookingReference, "Music");
-    totalOfCostMusic = totalCostOfThisService(numOfAttendees); 
-  }
-
-
-  
-  @Override
-  public int totalCostOfThisService(int numOfAttendees) {
-
-    return 500 * numOfAttendees;
+    this.totalOfCostMusic = 500; 
   }
 
   public int getMusicCost() {

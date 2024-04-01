@@ -10,15 +10,7 @@ public class Catering extends Services{
     super(bookingReferenceCode, "Catering");
     
     this.cateringType = typeOfCatering;
-    this.totalCostOfCatering = totalCostOfThisService(numOfAttendees);
-  }
-
-
-
-  @Override
-  public int totalCostOfThisService(int numOfAttendees) {
-    
-    return this.cateringType.getCostPerPerson() * numOfAttendees;
+    this.totalCostOfCatering = cateringType.getCostPerPerson() * numOfAttendees;
   }
 
   public int getCateringCost() {

@@ -9,20 +9,14 @@ public class Floral extends Services{
 
     super(referenceCode, "Floral");
     this.floralType = floralType;
-    this.totalFloralCost = totalCostOfThisService(numOfAttendees);
-  }
-
-  public int totalCostOfThisService(int numOfAttendees) {
-    
-    if (this.floralType.equals(Types.FloralType.STANDARD)) {
-      return 550;
-    }
-    else {
-      return 1000;
-    }
+    this.totalFloralCost = floralType.getCost();
   }
 
   public int getFloralCost() {
     return this.totalFloralCost;
+  }
+
+  public Types.FloralType getFloralType() {
+    return this.floralType;
   }
 }
