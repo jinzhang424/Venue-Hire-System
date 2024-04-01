@@ -473,7 +473,6 @@ public class VenueHireSystem {
   
   public void viewInvoice(String bookingReference) {
 
-
     // Finding where the corresponding venue and booking is in their respective lists
     int bookingIndex = bookingFinder(bookingReference);
     int venueIndex = venueFinder(BookingList.get(bookingIndex).getBookingVenueCode());
@@ -483,6 +482,8 @@ public class VenueHireSystem {
     int musicIndex = serviceFinder(bookingReference, "Music");
     int floralIndex = serviceFinder(bookingReference, "Floral");
 
+    int totalCostOfServices = 0;
+
     // Printing details for the top half of the invoice
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference
     , BookingList.get(bookingIndex).getBookingVenueEmail()
@@ -491,7 +492,7 @@ public class VenueHireSystem {
     , BookingList.get(bookingIndex).getNumOfAttendees()
     , VenueList.get(venueIndex).getVenueName());
 
-    // Latter half of the invoice
+    // Service cost section
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
 
     if (cateringIndex != -1) { // Checking if catering was added to this booking
@@ -502,11 +503,17 @@ public class VenueHireSystem {
       int numOfAttendees = Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees());
       int costOfCatering = isCatering.getCostOfService();
 
+      // Adding catering costs
+      totalCostOfServices += isCatering.getCostOfService()*numOfAttendees;
+
       MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(isCatering.getCateringType().getName()
       , String.valueOf(costOfCatering*numOfAttendees));
     }
 
     if (musicIndex != -1) { // Checking if music was added to this booking
+
+      // Adding music costs
+      totalCostOfServices += 500;
 
       MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
     }
@@ -515,8 +522,15 @@ public class VenueHireSystem {
 
       Floral isFloral = (Floral)ServiceList.get(floralIndex);
       
+      // Adding floral costs
+      totalCostOfServices += ServiceList.get(floralIndex).getCostOfService();
+
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(isFloral.getFloralType().getName()
       , String.valueOf(ServiceList.get(floralIndex).getCostOfService()));
     }
+
+    // Bottom half of invoice content
+    
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(totalCostOfServices));
   }
 }
