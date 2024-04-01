@@ -32,7 +32,7 @@ public class Venues {
   }
 
   // Getting venue hire fee
-  public String hireFee() {
+  public String getHireFee() {
     return this.hireFee;
   }
 }

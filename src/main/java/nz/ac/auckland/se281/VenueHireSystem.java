@@ -37,7 +37,7 @@ public class VenueHireSystem {
         VenueList.get(0).getVenueName()
       , VenueList.get(0).getVenueCode()
       , VenueList.get(0).getVenueCapacity()
-      , VenueList.get(0).hireFee()
+      , VenueList.get(0).getHireFee()
       , nextAvailableDate(VenueList.get(0).getVenueCode()));
     }
     //Prints message for when there is more than 1 venue
@@ -49,7 +49,7 @@ public class VenueHireSystem {
           VenueList.get(i).getVenueName()
         , VenueList.get(i).getVenueCode()
         , VenueList.get(i).getVenueCapacity()
-        , VenueList.get(i).hireFee()
+        , VenueList.get(i).getHireFee()
         , nextAvailableDate(VenueList.get(i).getVenueCode()));
       }
     }
@@ -462,5 +462,16 @@ public class VenueHireSystem {
 
   
   public void viewInvoice(String bookingReference) {
+
+    int bookingIndex = bookingFinder(bookingReference);
+    int venueIndex = venueFinder(BookingList.get(bookingIndex).getBookingVenueCode());
+
+    // Printing details for the top half of the invoice
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference
+    , BookingList.get(bookingIndex).getBookingVenueEmail()
+    , BookingList.get(bookingIndex).getDateOfBooking()
+    , BookingList.get(bookingIndex).getBookingVenueDate()
+    , BookingList.get(bookingIndex).getNumOfAttendees()
+    , VenueList.get(venueIndex).getVenueName());
   }
 }
