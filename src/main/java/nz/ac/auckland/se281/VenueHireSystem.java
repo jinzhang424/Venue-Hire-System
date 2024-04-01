@@ -460,6 +460,22 @@ public class VenueHireSystem {
   }
 
 
+
+  public int serviceFinder(String bookingReference, String typeOfService) {
+
+    for (int i = 0; i < ServiceList.size(); i++) {
+      // Checks if the booking reference matches and the typeOfService matches
+      if (ServiceList.get(i).getBookingReferenceCode().equals(bookingReference)
+      && ServiceList.get(i).getTypeOfService().equals(typeOfService)) {
+        return i;
+      }
+    }
+
+    // Returns -1 for when that kind of service was not part of a the booking
+    return -1;
+  }
+
+
   
   public void viewInvoice(String bookingReference) {
 
@@ -473,5 +489,7 @@ public class VenueHireSystem {
     , BookingList.get(bookingIndex).getBookingVenueDate()
     , BookingList.get(bookingIndex).getNumOfAttendees()
     , VenueList.get(venueIndex).getVenueName());
+
+    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
   }
 }

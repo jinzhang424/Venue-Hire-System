@@ -16,7 +16,7 @@ public abstract class Services{
     return this.bookingReferenceCode;
   }
 
-  public Services typeOfService() {
-    return this.typeOfService();
+  public String getTypeOfService() {
+    return this.typeOfService;
   }
 }
