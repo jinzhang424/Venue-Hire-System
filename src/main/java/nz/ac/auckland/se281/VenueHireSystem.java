@@ -452,34 +452,13 @@ public class VenueHireSystem {
   }
 
 
-  /**
-   * 
-   * Seatches through the booking list to find the number of attendees
-   * for a particular booking
-   * 
-   * @param bookingReference - A booking's reference code
-   * @return - Number of attendees
-   */
-  public int findNumOfAttendees(String bookingReference) {
-
-    for (Bookings booking: BookingList) {
-      if (booking.getBookingReferece().equals(bookingReference)) {
-        
-        return Integer.parseInt(booking.getNumOfAttendees());
-      }
-    }
-
-    return 0;
-  }
-
-
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     
     // Checking if the booking reference exists or not
     if (doesBookingReferenceExist(bookingReference) == true) {
 
-      Catering newCatering = new Catering(cateringType, bookingReference, findNumOfAttendees(bookingReference));
+      Catering newCatering = new Catering(cateringType, bookingReference);
 
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering " + "(" + cateringType.getName() + ")"
       , bookingReference);
@@ -501,7 +480,7 @@ public class VenueHireSystem {
     // Checking if the booking reference exists
     if (doesBookingReferenceExist(bookingReference) == true) {
 
-      Music newMusic = new Music(bookingReference, findNumOfAttendees(bookingReference));
+      Music newMusic = new Music(bookingReference);
       
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
 
@@ -519,7 +498,7 @@ public class VenueHireSystem {
     // Checking if booking reference exists
     if (doesBookingReferenceExist(bookingReference) == true) {
       
-      Floral newFloral = new Floral(bookingReference, findNumOfAttendees(bookingReference), floralType);
+      Floral newFloral = new Floral(bookingReference, floralType);
 
       ServiceList.add(newFloral);
  
