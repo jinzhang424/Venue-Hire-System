@@ -16,9 +16,11 @@ public class VenueHireSystem {
 
 
   public VenueHireSystem() {}
-  
 
 
+  /**
+   * Prints out all (if any) venues in the system
+   */
   public void printVenues() {
 
     //Prints message for when no venues have been created
@@ -53,7 +55,19 @@ public class VenueHireSystem {
   }
 
 
-
+  /**
+   * 
+   * Performs all the necessary checks on the venue name (venueName),
+   * code of the venue (venueCode), capacity of the venue (venueCapacity),
+   * and the hiring fee (hireFee) of the venue to see if they're valid. 
+   * If they're not, print an error message, and if it passes all the checks
+   * create the venue.
+   * 
+   * @param venueName - Name of the venue 
+   * @param venueCode - Code of the venue
+   * @param venueCapacity - Capacity of the venue
+   * @param hireFee - Hire fee of the venue
+   */
   public void createVenue(String venueName, String venueCode
   , String venueCapacity, String hireFee) {
 
@@ -63,7 +77,8 @@ public class VenueHireSystem {
       
       return;
     }
-    else if (VenueList.size() > 0) { // Checks if the venue code entered is unique
+    // Checks if the venue code entered is unique
+    else if (VenueList.size() > 0) {
       for (int i = 0; i < VenueList.size(); i++) {
         if (VenueList.get(i).getVenueCode().equalsIgnoreCase(venueCode)) {
           MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, VenueList.get(i).getVenueName());
@@ -72,7 +87,6 @@ public class VenueHireSystem {
         }
       }
     }
-    
 
     //Checks for invalid venue capacity
     try { 
@@ -111,7 +125,14 @@ public class VenueHireSystem {
   }
 
 
-  // This method finds the index of where a venue is in the list
+  /**
+   * 
+   * Loops through the venue list (VenueList) to search for a particular venue's index
+   * position in the list
+   * 
+   * @param venueCode - Code of a venue
+   * @return - Returns the index position of the venue
+   */
   public int venueFinder(String venueCode) {
 
     for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
@@ -120,30 +141,44 @@ public class VenueHireSystem {
       }
     }
 
-    return 0;
+    return -1;
   }
 
 
-
+  /**
+   * 
+   * Sets the system date
+   * 
+   * @param dateInput - User's input date
+   */
   public void setSystemDate(String dateInput) {
     systemDate = dateInput;
     
-    MessageCli.DATE_SET.printMessage(systemDate); // Prints message saying system date has been set
+    MessageCli.DATE_SET.printMessage(systemDate); 
   }
 
 
-
+  /**
+   * Prints out the system date
+   */
   public void printSystemDate() {
     if (systemDate == null) { // Checks if there is a system date
       System.out.println("Current system date is not set.");
     }
-    else { // Prints system date
+    else {
       MessageCli.CURRENT_DATE.printMessage(systemDate);
     }
   }
 
 
 
+  /**
+   * 
+   * Checks whether the information provided for a booking is value
+   * 
+   * @param bookingInfo - Contains booking information
+   * @return - Returns true if all information is valid otherwise false
+   */
   public boolean bookingInfoChecker(String[] bookingInfo) {
   
     // Checks if system date has been set
@@ -189,6 +224,13 @@ public class VenueHireSystem {
     return true;
   }
 
+  /**
+   * 
+   * Loops through the venue list (VenueList) to see if the venue exists
+   * 
+   * @param codeOfVenue - Code of a venue
+   * @return - True if the venue code exists, otherwise false
+   */
   public boolean doesVenueCodeExist(String codeOfVenue) {
     
     // Loops through the venue list to check if the venue exists
@@ -202,12 +244,20 @@ public class VenueHireSystem {
   }
 
 
-  // This method checks if the day we're trying to book for this venue is available or not
+  /**
+   * 
+   * To check if the venue is available for booking that day (i.e.
+   * it's not already booked on that day)
+   * 
+   * @param bookingDate - The date we're trying to book
+   * @param codeOfVenue - Code of a venue
+   * @return - True if the date hasn't already been booked for a venue, otherwise false
+   */
   public boolean isDateAvailableForVenue(String bookingDate, String codeOfVenue) {
     
     if (BookingList.size() > 0) { 
       for (int k = 0; k < BookingList.size(); k++) {
-        // Checks if there the particular venue has a matching date
+        // Checks if venue code matches and if the particular venue has a matching date
         if (codeOfVenue.equals(BookingList.get(k).getBookingVenueCode()) 
         && bookingDate.equals(BookingList.get(k).getBookingVenueDate())) {
           
@@ -221,7 +271,15 @@ public class VenueHireSystem {
 
 
   
-  // This method checks if the number of attendees is suitable for a given venue's capacity
+  /**
+   * 
+   * Checks if the number of attendees is less than 25% of the venue capacity or
+   * more than 100% of it's capacity
+   * 
+   * @param bookingAttendees - Number of attendees specificied in the booking
+   * @param venueCode - code of a venue
+   * @return
+   */
   public String bookingAttendeesChecker(String bookingAttendees, String venueCode) {
 
     int numOfAttendees = Integer.parseInt(bookingAttendees);
@@ -243,7 +301,13 @@ public class VenueHireSystem {
   }
 
 
-
+  /**
+   * 
+   * Checks the user input options to see if they're valid and then
+   * creates a booking
+   * 
+   * @param options - User input of Venue code, event date, email, number of attendees
+   */
   public void makeBooking(String[] options) {
 
     //Checking that inputs are valid and if the system is prepared to make bookings
@@ -262,7 +326,13 @@ public class VenueHireSystem {
   }
 
 
-
+  /**
+   * 
+   * Looks for the next available date of a particular venue
+   * 
+   * @param codeOfVenue - The venue's code
+   * @return - Returns the next available date of a particular venue
+   */
   public String nextAvailableDate(String codeOfVenue) {
 
     // Checks for when the system date is null
@@ -299,7 +369,14 @@ public class VenueHireSystem {
   }
 
 
-  // This method checks if a booking has been made for a venue
+  /**
+   * 
+   * Looks through the booking list to see if a booking has been made
+   * for a particular venue
+   * 
+   * @param venueCode - A venue's code
+   * @return - True if there is a booking for a venue otherwise false
+   */
   public boolean isThereBookingForVenue(String venueCode) {
 
     // Loops through the booking list to check if a booking has been made for a particular venue
@@ -312,6 +389,15 @@ public class VenueHireSystem {
   }
 
 
+
+  /**
+   * 
+   * Searches the booking list (BookingList) to find the bookings
+   * for a particular venue and prints out their reference code 
+   * and date of that venue's event
+   * 
+   * @param venueCode - A venue's code
+   */
   public void printBookings(String venueCode) {
     
     // Checks if venue code exists
@@ -346,6 +432,13 @@ public class VenueHireSystem {
   }
 
 
+  /**
+   * 
+   * Looks through the booking list using a booking reference to see if a booking a exists
+   * 
+   * @param bookingReference - A booking's reference code
+   * @return - True if the booking exists otherwise false
+   */
   public boolean doesBookingReferenceExist(String bookingReference) {
     
     // Looks through the booking list to check if the booking reference exists
@@ -359,7 +452,14 @@ public class VenueHireSystem {
   }
 
 
-  // This method finds the number of attendees given a booking reference code
+  /**
+   * 
+   * Seatches through the booking list to find the number of attendees
+   * for a particular booking
+   * 
+   * @param bookingReference - A booking's reference code
+   * @return - Number of attendees
+   */
   public int findNumOfAttendees(String bookingReference) {
 
     for (Bookings booking: BookingList) {
