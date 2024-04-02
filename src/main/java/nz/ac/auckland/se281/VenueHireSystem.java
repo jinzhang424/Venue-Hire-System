@@ -7,19 +7,16 @@ import java.util.ArrayList;
 
 public class VenueHireSystem {
 
-  //Creating a list for storing venues
   private ArrayList <Venues> VenueList = new ArrayList <Venues>();
-
-  //Creating a list for storing 
   private ArrayList <Bookings> BookingList = new ArrayList <Bookings>();
-
-  public VenueHireSystem() {}
-
+  private ArrayList <Services> ServiceList = new ArrayList <Services>();
+  
   private String systemDate = null;
 
-  public String getSystemDate() {
-    return systemDate;
-  }
+
+
+  public VenueHireSystem() {}
+  
 
 
   public void printVenues() {
@@ -360,10 +357,6 @@ public class VenueHireSystem {
 
     return false;
   }
-
-
-  
-  private ArrayList <Services> ServiceList = new ArrayList <Services>();
 
 
   // This method finds the number of attendees given a booking reference code
