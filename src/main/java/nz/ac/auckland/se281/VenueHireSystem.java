@@ -453,6 +453,15 @@ public class VenueHireSystem {
 
 
 
+  /**
+   * 
+   * Adds catering to a booking by first checking if the booking reference exists
+   * and if it does, then creates a new Catering instance
+   * 
+   * @param bookingReference - The reference code of a booking
+   * @param cateringType - The user input of what Catering type they want to add
+   * 
+   */
   public void addCateringService(String bookingReference, CateringType cateringType) {
     
     // Checking if the booking reference exists or not
@@ -474,7 +483,14 @@ public class VenueHireSystem {
   }
 
 
-
+  /**
+   * 
+   * Adds music to a booking by first checking if the booking reference exists and
+   * then creating a Music instance
+   * 
+   * @param bookingReference - The reference code of a booking
+   * 
+   */
   public void addServiceMusic(String bookingReference) {
     
     // Checking if the booking reference exists
@@ -492,7 +508,14 @@ public class VenueHireSystem {
   }
 
 
-    
+  /**
+   * 
+   * Adds floral to a booking by first checking if the booking reference exists and then
+   * creating an instance of a Floral
+   * 
+   * @param bookingReference - The reference code of a booking
+   * @param floralType - The user's input of what type of floral they want to add
+   */
   public void addServiceFloral(String bookingReference, FloralType floralType) {
     
     // Checking if booking reference exists
@@ -512,12 +535,26 @@ public class VenueHireSystem {
   }
 
 
-  // Returns the index of the booking that matches the reference code in the booking list
+  /**
+   * 
+   * First checks if the booking reference exists and then uses a for loop and if statement
+   * to go through the array to search for the index of a particular booking based on the booking
+   * reference, and returns the index 
+   * 
+   * @param bookingReference - The reference code of a booking
+   * @return - The index position of a booking
+   * 
+   */
   public int bookingFinder(String bookingReference) {
     
-    for (int i = 0; i < BookingList.size(); i++) {
-      if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
-        return i;
+    // Checking if the booking reference exists
+    if (doesBookingReferenceExist(bookingReference) == true) { 
+
+      // Searching BookingList to find the booking's index
+      for (int i = 0; i < BookingList.size(); i++) {
+        if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
+          return i;
+        }
       }
     }
 
