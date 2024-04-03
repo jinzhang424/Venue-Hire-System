@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
-public class Floral extends Services{
-  
+public class Floral extends Services {
+
   private Types.FloralType floralType;
 
   public Floral(String referenceCode, Types.FloralType floralType) {
