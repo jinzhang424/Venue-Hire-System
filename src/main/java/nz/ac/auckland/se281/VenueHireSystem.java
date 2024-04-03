@@ -563,10 +563,20 @@ public class VenueHireSystem {
 
 
 
+  /**
+   * 
+   * Uses a for loop to look through the service list to search for the
+   * index of a type of service and will return -1 if the service is not
+   * part of the service list
+   * 
+   * @param bookingReference - The reference code of a booking
+   * @param typeOfService - The type of service we're searching for
+   * @return - The index of the service we're searching for in ServiceList
+   */
   public int serviceFinder(String bookingReference, String typeOfService) {
 
     for (int i = 0; i < ServiceList.size(); i++) {
-      System.out.println(ServiceList.get(i).getBookingReferenceCode());
+
       // Checks if the booking reference matches and the typeOfService matches
       if (ServiceList.get(i).getBookingReferenceCode().equals(bookingReference)
       & ServiceList.get(i).getTypeOfService().equals(typeOfService)) {
@@ -579,7 +589,19 @@ public class VenueHireSystem {
   }
 
 
-  
+  /**
+   * 
+   * Prints out the invoice of a booking which contains information about the:
+   * 
+   * booking details - customer email, date of booking
+   * event details - party date, number of guests, venue name
+   * cost breakdown - hire costs, catering costs (if catering was booking), music costs (if music was booked)
+   *  , floral costs (if floral was booked) and the total cost of the venue
+   * 
+   * 
+   * @param bookingReference - The reference code of a booking
+   * 
+   */
   public void viewInvoice(String bookingReference) {
 
     // Finding where the corresponding venue and booking is in their respective lists
@@ -637,8 +659,6 @@ public class VenueHireSystem {
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(isFloral.getFloralType().getName()
       , String.valueOf(ServiceList.get(floralIndex).getCostOfService()));
     }
-
-    // Bottom half of invoice content
     
     MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(totalCostOfServices));
   }
