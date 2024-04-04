@@ -17,6 +17,9 @@ public class VenueHireSystem {
   /** Prints out all (if any) venues in the system */
   public void printVenues() {
 
+    String[] numberAsWord =
+        new String[] {"", "", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
     // Prints message for when no venues have been created
     if (venueList.size() == 0) {
 
@@ -27,6 +30,18 @@ public class VenueHireSystem {
     else if (venueList.size() == 1) {
 
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+
+      MessageCli.VENUE_ENTRY.printMessage(
+          venueList.get(0).getVenueName(),
+          venueList.get(0).getVenueCode(),
+          venueList.get(0).getVenueCapacity(),
+          venueList.get(0).getHireFee(),
+          nextAvailableDate(venueList.get(0).getVenueCode()));
+    }
+
+    // Prints message for when there is more than 1 but less than 10 venues
+    else if (venueList.size() > 1 && venueList.size() < 10) {
+      MessageCli.NUMBER_VENUES.printMessage("are", numberAsWord[venueList.size()], "");
 
       MessageCli.VENUE_ENTRY.printMessage(
           venueList.get(0).getVenueName(),
