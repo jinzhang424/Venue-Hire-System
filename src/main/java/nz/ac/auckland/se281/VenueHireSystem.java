@@ -22,6 +22,7 @@ public class VenueHireSystem {
 
       MessageCli.NO_VENUES.printMessage();
     }
+
     // Prints message for when there is 1 venue
     else if (VenueList.size() == 1) {
 
@@ -34,6 +35,7 @@ public class VenueHireSystem {
           VenueList.get(0).getHireFee(),
           nextAvailableDate(VenueList.get(0).getVenueCode()));
     }
+
     // Prints message for when there is more than 1 venue
     else {
       MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
@@ -69,6 +71,7 @@ public class VenueHireSystem {
 
       return;
     }
+
     // Checks if the venue code entered is unique
     else if (VenueList.size() > 0) {
       for (int i = 0; i < VenueList.size(); i++) {
@@ -268,6 +271,7 @@ public class VenueHireSystem {
           VenueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue / 4);
     }
+
     // Checks if the number of attendees exceeds venue capacity
     else if (numOfAttendees > capacityOfVenue) {
 
@@ -277,6 +281,7 @@ public class VenueHireSystem {
           VenueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue);
     }
+
     return bookingAttendees;
   }
 
@@ -319,7 +324,7 @@ public class VenueHireSystem {
     }
 
     String availableDate = systemDate;
-    String availableDateParts[] = availableDate.split("/");
+    String[] availableDateParts = availableDate.split("/");
 
     // Checks for when the booking size is 0
     if (BookingList.size() == 0) {
@@ -361,6 +366,7 @@ public class VenueHireSystem {
         return true;
       }
     }
+
     return false;
   }
 
@@ -439,6 +445,7 @@ public class VenueHireSystem {
 
       ServiceList.add(newCatering);
     }
+
     // For when reference code doesn't exist
     else {
 
@@ -487,6 +494,7 @@ public class VenueHireSystem {
           "Floral " + "(" + floralType.getName() + ")", bookingReference);
 
     }
+
     // When booking reference doesn't exist
     else {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
