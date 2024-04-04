@@ -6,9 +6,9 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
 
-  private ArrayList<Venues> VenueList = new ArrayList<Venues>();
-  private ArrayList<Bookings> BookingList = new ArrayList<Bookings>();
-  private ArrayList<Services> ServiceList = new ArrayList<Services>();
+  private ArrayList<Venues> venueList = new ArrayList<Venues>();
+  private ArrayList<Bookings> bookingList = new ArrayList<Bookings>();
+  private ArrayList<Services> serviceList = new ArrayList<Services>();
 
   private String systemDate = null;
 
@@ -18,35 +18,35 @@ public class VenueHireSystem {
   public void printVenues() {
 
     // Prints message for when no venues have been created
-    if (VenueList.size() == 0) {
+    if (venueList.size() == 0) {
 
       MessageCli.NO_VENUES.printMessage();
     }
 
     // Prints message for when there is 1 venue
-    else if (VenueList.size() == 1) {
+    else if (venueList.size() == 1) {
 
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
 
       MessageCli.VENUE_ENTRY.printMessage(
-          VenueList.get(0).getVenueName(),
-          VenueList.get(0).getVenueCode(),
-          VenueList.get(0).getVenueCapacity(),
-          VenueList.get(0).getHireFee(),
-          nextAvailableDate(VenueList.get(0).getVenueCode()));
+          venueList.get(0).getVenueName(),
+          venueList.get(0).getVenueCode(),
+          venueList.get(0).getVenueCapacity(),
+          venueList.get(0).getHireFee(),
+          nextAvailableDate(venueList.get(0).getVenueCode()));
     }
 
     // Prints message for when there is more than 1 venue
     else {
-      MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(VenueList.size()), "s");
+      MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
 
-      for (int i = 0; i < VenueList.size(); i++) {
+      for (int i = 0; i < venueList.size(); i++) {
         MessageCli.VENUE_ENTRY.printMessage(
-            VenueList.get(i).getVenueName(),
-            VenueList.get(i).getVenueCode(),
-            VenueList.get(i).getVenueCapacity(),
-            VenueList.get(i).getHireFee(),
-            nextAvailableDate(VenueList.get(i).getVenueCode()));
+            venueList.get(i).getVenueName(),
+            venueList.get(i).getVenueCode(),
+            venueList.get(i).getVenueCapacity(),
+            venueList.get(i).getHireFee(),
+            nextAvailableDate(venueList.get(i).getVenueCode()));
       }
     }
   }
@@ -73,11 +73,11 @@ public class VenueHireSystem {
     }
 
     // Checks if the venue code entered is unique
-    else if (VenueList.size() > 0) {
-      for (int i = 0; i < VenueList.size(); i++) {
-        if (VenueList.get(i).getVenueCode().equalsIgnoreCase(venueCode)) {
+    else if (venueList.size() > 0) {
+      for (int i = 0; i < venueList.size(); i++) {
+        if (venueList.get(i).getVenueCode().equalsIgnoreCase(venueCode)) {
           MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(
-              venueCode, VenueList.get(i).getVenueName());
+              venueCode, venueList.get(i).getVenueName());
 
           return;
         }
@@ -115,7 +115,7 @@ public class VenueHireSystem {
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
 
     // Adds the new venue to a list (VenueList)
-    VenueList.add(venue);
+    venueList.add(venue);
   }
 
   /**
@@ -127,8 +127,8 @@ public class VenueHireSystem {
    */
   public int venueFinder(String venueCode) {
 
-    for (int i = 0; i < VenueList.size(); i++) { // Looks through VenueList for matching venue code
-      if (VenueList.get(i).getVenueCode().equals(venueCode)) {
+    for (int i = 0; i < venueList.size(); i++) { // Looks through VenueList for matching venue code
+      if (venueList.get(i).getVenueCode().equals(venueCode)) {
         return i;
       }
     }
@@ -170,7 +170,7 @@ public class VenueHireSystem {
       return false;
     }
     // Checks if there's venues in the system
-    else if (VenueList.size() == 0) {
+    else if (venueList.size() == 0) {
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
       return false;
     }
@@ -191,7 +191,7 @@ public class VenueHireSystem {
     if (isDateAvailableForVenue(bookingInfo[1], bookingInfo[0]) == false) {
 
       MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
-          VenueList.get((venueFinder(bookingInfo[0]))).getVenueName(), bookingInfo[1]);
+          venueList.get((venueFinder(bookingInfo[0]))).getVenueName(), bookingInfo[1]);
 
       return false;
     }
@@ -215,8 +215,8 @@ public class VenueHireSystem {
   public boolean doesVenueCodeExist(String codeOfVenue) {
 
     // Loops through the venue list to check if the venue exists
-    for (int i = 0; i < VenueList.size(); i++) {
-      if (VenueList.get(i).getVenueCode().equals(codeOfVenue)) {
+    for (int i = 0; i < venueList.size(); i++) {
+      if (venueList.get(i).getVenueCode().equals(codeOfVenue)) {
         return true;
       }
     }
@@ -234,11 +234,11 @@ public class VenueHireSystem {
    */
   public boolean isDateAvailableForVenue(String bookingDate, String codeOfVenue) {
 
-    if (BookingList.size() > 0) {
-      for (int k = 0; k < BookingList.size(); k++) {
+    if (bookingList.size() > 0) {
+      for (int k = 0; k < bookingList.size(); k++) {
         // Checks if venue code matches and if the particular venue has a matching date
-        if (codeOfVenue.equals(BookingList.get(k).getBookingVenueCode())
-            && bookingDate.equals(BookingList.get(k).getBookingVenueDate())) {
+        if (codeOfVenue.equals(bookingList.get(k).getBookingVenueCode())
+            && bookingDate.equals(bookingList.get(k).getBookingVenueDate())) {
 
           return false;
         }
@@ -260,7 +260,7 @@ public class VenueHireSystem {
 
     int numOfAttendees = Integer.parseInt(bookingAttendees);
     int capacityOfVenue =
-        Integer.parseInt(VenueList.get(venueFinder(venueCode)).getVenueCapacity());
+        Integer.parseInt(venueList.get(venueFinder(venueCode)).getVenueCapacity());
 
     // Checks if the number of attendees is 25% of venue capacity
     if (numOfAttendees < capacityOfVenue / 4) {
@@ -268,7 +268,7 @@ public class VenueHireSystem {
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
           bookingAttendees,
           Integer.toString(capacityOfVenue / 4),
-          VenueList.get(venueFinder(venueCode)).getVenueCapacity());
+          venueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue / 4);
     }
 
@@ -277,8 +277,8 @@ public class VenueHireSystem {
 
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
           bookingAttendees,
-          VenueList.get(venueFinder(venueCode)).getVenueCapacity(),
-          VenueList.get(venueFinder(venueCode)).getVenueCapacity());
+          venueList.get(venueFinder(venueCode)).getVenueCapacity(),
+          venueList.get(venueFinder(venueCode)).getVenueCapacity());
       return Integer.toString(capacityOfVenue);
     }
 
@@ -300,11 +300,11 @@ public class VenueHireSystem {
 
       Bookings newBooking = new Bookings(options, systemDate);
 
-      BookingList.add(newBooking);
+      bookingList.add(newBooking);
 
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
           newBooking.getBookingReferece(),
-          VenueList.get(venueFinder(options[0])).getVenueName(),
+          venueList.get(venueFinder(options[0])).getVenueName(),
           options[1],
           options[3]);
     }
@@ -327,7 +327,7 @@ public class VenueHireSystem {
     String[] availableDateParts = availableDate.split("/");
 
     // Checks for when the booking size is 0
-    if (BookingList.size() == 0) {
+    if (bookingList.size() == 0) {
       return availableDate;
     }
 
@@ -361,8 +361,8 @@ public class VenueHireSystem {
   public boolean isThereBookingForVenue(String venueCode) {
 
     // Loops through the booking list to check if a booking has been made for a particular venue
-    for (int i = 0; i < BookingList.size(); i++) {
-      if (BookingList.get(i).getBookingVenueCode().equals(venueCode)) {
+    for (int i = 0; i < bookingList.size(); i++) {
+      if (bookingList.get(i).getBookingVenueCode().equals(venueCode)) {
         return true;
       }
     }
@@ -385,7 +385,7 @@ public class VenueHireSystem {
     // Checks if there are bookings for the venue
     else if (isThereBookingForVenue(venueCode) == false) {
 
-      String bookingName = VenueList.get(venueFinder(venueCode)).getVenueName();
+      String bookingName = venueList.get(venueFinder(venueCode)).getVenueName();
 
       MessageCli.PRINT_BOOKINGS_HEADER.printMessage(bookingName);
 
@@ -393,16 +393,16 @@ public class VenueHireSystem {
     }
     // Prints out all the bookings for the venue
     else {
-      for (int i = 0; i < BookingList.size(); i++) {
+      for (int i = 0; i < bookingList.size(); i++) {
 
         // Matching the venue code with the booking
-        if (BookingList.get(i).getBookingVenueCode().equals(venueCode) == true) {
+        if (bookingList.get(i).getBookingVenueCode().equals(venueCode) == true) {
 
           MessageCli.PRINT_BOOKINGS_HEADER.printMessage(
-              VenueList.get(venueFinder(venueCode)).getVenueName());
+              venueList.get(venueFinder(venueCode)).getVenueName());
 
           MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
-              BookingList.get(i).getBookingReferece(), BookingList.get(i).getBookingVenueDate());
+              bookingList.get(i).getBookingReferece(), bookingList.get(i).getBookingVenueDate());
         }
       }
     }
@@ -417,8 +417,8 @@ public class VenueHireSystem {
   public boolean doesBookingReferenceExist(String bookingReference) {
 
     // Looks through the booking list to check if the booking reference exists
-    for (int i = 0; i < BookingList.size(); i++) {
-      if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
+    for (int i = 0; i < bookingList.size(); i++) {
+      if (bookingList.get(i).getBookingReferece().equals(bookingReference)) {
         return true;
       }
     }
@@ -443,7 +443,7 @@ public class VenueHireSystem {
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
           "Catering " + "(" + cateringType.getName() + ")", bookingReference);
 
-      ServiceList.add(newCatering);
+      serviceList.add(newCatering);
     }
 
     // For when reference code doesn't exist
@@ -468,7 +468,7 @@ public class VenueHireSystem {
 
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
 
-      ServiceList.add(newMusic);
+      serviceList.add(newMusic);
     } else {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
     }
@@ -488,7 +488,7 @@ public class VenueHireSystem {
 
       Floral newFloral = new Floral(bookingReference, floralType);
 
-      ServiceList.add(newFloral);
+      serviceList.add(newFloral);
 
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
           "Floral " + "(" + floralType.getName() + ")", bookingReference);
@@ -515,8 +515,8 @@ public class VenueHireSystem {
     if (doesBookingReferenceExist(bookingReference) == true) {
 
       // Searching BookingList to find the booking's index
-      for (int i = 0; i < BookingList.size(); i++) {
-        if (BookingList.get(i).getBookingReferece().equals(bookingReference)) {
+      for (int i = 0; i < bookingList.size(); i++) {
+        if (bookingList.get(i).getBookingReferece().equals(bookingReference)) {
           return i;
         }
       }
@@ -535,11 +535,11 @@ public class VenueHireSystem {
    */
   public int serviceFinder(String bookingReference, String typeOfService) {
 
-    for (int i = 0; i < ServiceList.size(); i++) {
+    for (int i = 0; i < serviceList.size(); i++) {
 
       // Checks if the booking reference matches and the typeOfService matches
-      if (ServiceList.get(i).getBookingReferenceCode().equals(bookingReference)
-          & ServiceList.get(i).getTypeOfService().equals(typeOfService)) {
+      if (serviceList.get(i).getBookingReferenceCode().equals(bookingReference)
+          & serviceList.get(i).getTypeOfService().equals(typeOfService)) {
         return i;
       }
     }
@@ -562,33 +562,33 @@ public class VenueHireSystem {
 
     // Finding where the corresponding venue and booking is in their respective lists
     int bookingIndex = bookingFinder(bookingReference);
-    int venueIndex = venueFinder(BookingList.get(bookingIndex).getBookingVenueCode());
+    int venueIndex = venueFinder(bookingList.get(bookingIndex).getBookingVenueCode());
 
     // Finding where each corresponding service type is in the service list
     int cateringIndex = serviceFinder(bookingReference, "Catering");
     int musicIndex = serviceFinder(bookingReference, "Music");
     int floralIndex = serviceFinder(bookingReference, "Floral");
 
-    int totalCostOfServices = Integer.parseInt(VenueList.get(venueIndex).getHireFee());
+    int totalCostOfServices = Integer.parseInt(venueList.get(venueIndex).getHireFee());
 
     // Printing details for the top half of the invoice
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
         bookingReference,
-        BookingList.get(bookingIndex).getBookingVenueEmail(),
-        BookingList.get(bookingIndex).getDateOfBooking(),
-        BookingList.get(bookingIndex).getBookingVenueDate(),
-        BookingList.get(bookingIndex).getNumOfAttendees(),
-        VenueList.get(venueIndex).getVenueName());
+        bookingList.get(bookingIndex).getBookingVenueEmail(),
+        bookingList.get(bookingIndex).getDateOfBooking(),
+        bookingList.get(bookingIndex).getBookingVenueDate(),
+        bookingList.get(bookingIndex).getNumOfAttendees(),
+        venueList.get(venueIndex).getVenueName());
 
     // Service cost section
-    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(VenueList.get(venueIndex).getHireFee());
+    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueList.get(venueIndex).getHireFee());
 
     if (cateringIndex != -1) { // Checking if catering was added to this booking
 
-      Catering isCatering = (Catering) ServiceList.get(cateringIndex);
+      Catering isCatering = (Catering) serviceList.get(cateringIndex);
 
       // Finding the number of attendees and cost of catering for calculating total cost
-      int numOfAttendees = Integer.parseInt(BookingList.get(bookingIndex).getNumOfAttendees());
+      int numOfAttendees = Integer.parseInt(bookingList.get(bookingIndex).getNumOfAttendees());
       int costOfCatering = isCatering.getCostOfService();
 
       // Adding catering costs
@@ -608,14 +608,14 @@ public class VenueHireSystem {
 
     if (floralIndex != -1) { // Checking if floral was added to this booking
 
-      Floral isFloral = (Floral) ServiceList.get(floralIndex);
+      Floral isFloral = (Floral) serviceList.get(floralIndex);
 
       // Adding floral costs
-      totalCostOfServices += ServiceList.get(floralIndex).getCostOfService();
+      totalCostOfServices += serviceList.get(floralIndex).getCostOfService();
 
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(
           isFloral.getFloralType().getName(),
-          String.valueOf(ServiceList.get(floralIndex).getCostOfService()));
+          String.valueOf(serviceList.get(floralIndex).getCostOfService()));
     }
 
     MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(totalCostOfServices));
