@@ -81,7 +81,8 @@ public class VenueHireSystem {
       String venueName, String venueCode, String venueCapacity, String hireFee) {
 
     // Checks for invalid venue name
-    if (venueName.replaceAll("\\s", "") == "") {
+    if (venueName.replaceAll("\\s", "").equals("")
+        || venueName.replaceAll("\\s", "").equals("''")) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
 
       return;
