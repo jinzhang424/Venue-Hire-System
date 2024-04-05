@@ -31,39 +31,24 @@ public class VenueHireSystem {
 
       MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
 
-      MessageCli.VENUE_ENTRY.printMessage(
-          venueList.get(0).getVenueName(),
-          venueList.get(0).getVenueCode(),
-          venueList.get(0).getVenueCapacity(),
-          venueList.get(0).getHireFee(),
-          nextAvailableDate(venueList.get(0).getVenueCode()));
+      venueList.get(0).printVenueEntry(nextAvailableDate(venueList.get(0).getVenueCode()));
     }
 
     // Prints message for when there is more than 1 but less than 10 venues
     else if (venueList.size() > 1 && venueList.size() < 10) {
-      MessageCli.NUMBER_VENUES.printMessage("are", numberAsWord[venueList.size()], "");
+      MessageCli.NUMBER_VENUES.printMessage("are", numberAsWord[venueList.size()], "s");
 
       for (int i = 0; i < venueList.size(); i++) {
-        MessageCli.VENUE_ENTRY.printMessage(
-            venueList.get(i).getVenueName(),
-            venueList.get(i).getVenueCode(),
-            venueList.get(i).getVenueCapacity(),
-            venueList.get(i).getHireFee(),
-            nextAvailableDate(venueList.get(i).getVenueCode()));
+        venueList.get(i).printVenueEntry(nextAvailableDate(venueList.get(i).getVenueCode()));
       }
     }
 
-    // Prints message for when there is more than 1 venue
+    // Prints message for when there is more than 9 venues
     else {
       MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
 
       for (int i = 0; i < venueList.size(); i++) {
-        MessageCli.VENUE_ENTRY.printMessage(
-            venueList.get(i).getVenueName(),
-            venueList.get(i).getVenueCode(),
-            venueList.get(i).getVenueCapacity(),
-            venueList.get(i).getHireFee(),
-            nextAvailableDate(venueList.get(i).getVenueCode()));
+        venueList.get(i).printVenueEntry(nextAvailableDate(venueList.get(i).getVenueCode()));
       }
     }
   }
@@ -363,8 +348,6 @@ public class VenueHireSystem {
       if (Integer.parseInt(availableDateParts[0]) < 10) {
         availableDate = "0" + availableDate;
       }
-
-      System.out.println(availableDate);
     }
 
     return availableDate;
