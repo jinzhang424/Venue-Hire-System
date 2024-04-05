@@ -411,13 +411,14 @@ public class VenueHireSystem {
     }
     // Prints out all the bookings for the venue
     else {
+
+      MessageCli.PRINT_BOOKINGS_HEADER.printMessage(
+          venueList.get(venueFinder(venueCode)).getVenueName());
+
       for (int i = 0; i < bookingList.size(); i++) {
 
         // Matching the venue code with the booking
         if (bookingList.get(i).getBookingVenueCode().equals(venueCode) == true) {
-
-          MessageCli.PRINT_BOOKINGS_HEADER.printMessage(
-              venueList.get(venueFinder(venueCode)).getVenueName());
 
           MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
               bookingList.get(i).getBookingReferece(), bookingList.get(i).getBookingVenueDate());
