@@ -6,14 +6,12 @@ public class Venues {
   private String venueCapacity = null;
   private String hireFee = null;
 
-  
   public Venues(String venueName, String venueCode, String venueCapacity, String hireFee) {
 
     this.venueName = venueName;
     this.venueCode = venueCode;
     this.venueCapacity = venueCapacity;
     this.hireFee = hireFee;
-    
   }
 
   // Getting venue name
@@ -34,5 +32,10 @@ public class Venues {
   // Getting venue hire fee
   public String getHireFee() {
     return this.hireFee;
+  }
+
+  public void printVenueEntry(String nextAvailableDate) {
+    MessageCli.VENUE_ENTRY.printMessage(
+        this.venueName, this.venueCode, this.venueCapacity, this.hireFee, nextAvailableDate);
   }
 }
