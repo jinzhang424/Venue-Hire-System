@@ -562,6 +562,12 @@ public class VenueHireSystem {
    */
   public void viewInvoice(String bookingReference) {
 
+    if (doesBookingReferenceExist(bookingReference) == false) {
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+
+      return;
+    }
+
     // Finding where the corresponding venue and booking is in their respective lists
     int bookingIndex = bookingFinder(bookingReference);
     int venueIndex = venueFinder(bookingList.get(bookingIndex).getBookingVenueCode());
