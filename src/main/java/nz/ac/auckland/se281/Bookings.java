@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
 public class Bookings {
-  
+
   private String bookingVenueCode = null;
   private String bookingVenueDate = null;
   private String dateOfBooking = null;
@@ -9,15 +9,15 @@ public class Bookings {
   private String numOfAttendees = null;
   private String bookingReference = null;
 
-  public Bookings (String[] BookingInfo, String dateOfBooking) {
-    bookingVenueCode = BookingInfo[0];
-    bookingVenueDate = BookingInfo[1];
-    bookingVenueEmail = BookingInfo[2];
-    numOfAttendees = BookingInfo[3]; 
+  public Bookings(String[] bookingInfo, String dateOfBooking) {
+    bookingVenueCode = bookingInfo[0];
+    bookingVenueDate = bookingInfo[1];
+    bookingVenueEmail = bookingInfo[2];
+    numOfAttendees = bookingInfo[3];
     this.dateOfBooking = dateOfBooking;
     bookingReference = BookingReferenceGenerator.generateBookingReference();
   }
-  
+
   public String getBookingVenueDate() {
     return this.bookingVenueDate;
   }

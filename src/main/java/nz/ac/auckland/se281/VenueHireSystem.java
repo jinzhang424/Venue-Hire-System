@@ -494,7 +494,6 @@ public class VenueHireSystem {
 
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
           "Floral " + "(" + floralType.getName() + ")", bookingReference);
-
     }
 
     // When booking reference doesn't exist
